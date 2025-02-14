@@ -1,0 +1,16 @@
+.wrapper {
+    width: 100%;
+    height: 45rem;
+    background-color: var(--colorMain2);
+    padding: 4rem 0;
+
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        height: auto;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+    }
+}

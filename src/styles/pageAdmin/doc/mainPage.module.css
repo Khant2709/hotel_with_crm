@@ -1,0 +1,36 @@
+.mainWrapper {
+    width: 100%;
+
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.subTitle {
+    opacity: 0.7;
+    font-size: calc(24px + (32 - 24) * (100vw - 480px) / (1920 - 480));
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(79, 70, 229, 0.2);
+}
+
+.list {
+    font-size: calc(16px + (22 - 16) * (100vw - 480px) / (1920 - 480));
+    margin-left: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.list li {
+    border-bottom: 1px solid transparent;
+}
+
+.list li:hover {
+    width: auto;
+    cursor: pointer;
+    color: #4f46e5;
+    border-bottom: 1px solid rgba(79, 70, 229, 0.4);
+}

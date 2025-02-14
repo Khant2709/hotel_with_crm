@@ -1,0 +1,41 @@
+.containerSearcher {
+    width: 100%;
+    margin-top: 2rem;
+
+    border-bottom: 2px solid rgba(79, 70, 229, 0.25);
+    padding-bottom: 2rem;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.boxField {
+    color: var(--colorSeconderyTextBlack);
+
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.boxField input, .boxField select, .btn {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #4f46e5;
+}
+
+.btn {
+    width: 100%;
+    height: auto;
+    padding: 0.575rem 1rem;
+    align-self: flex-end;
+
+    background-color: white;
+}
+
+.btn:hover {
+    color: white;
+    cursor: pointer;
+    background-color: #4f46e5;
+}

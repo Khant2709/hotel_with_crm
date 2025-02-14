@@ -1,0 +1,76 @@
+.main, .mainContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    width: 100%;
+}
+
+.mainContainer {
+    width: var(--widthComputer);
+    margin: 0 auto 4rem;
+}
+
+.mainContainer h1 {
+    margin-bottom: 4rem;
+}
+
+/*Заключение */
+.finishText {
+    font-size: calc(16px + (24 - 16) * (100vw - 480px) / (1920 - 480));
+    font-style: italic;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.wrapperFormCall {
+    width: 60%;
+    margin: 4rem auto 0;
+}
+
+
+@media (max-width: 1600px) {
+    .mainContainer {
+        width: var(--width1600);
+    }
+}
+
+@media (max-width: 1250px) {
+    .mainContainer {
+        width: var(--width1250);
+    }
+}
+
+@media (max-width: 1100px) {
+    .wrapperHotels {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .mainContainer, .mainContainer h1 {
+        margin-bottom: 2rem;
+    }
+
+    .finishText {
+        margin-top: 2rem;
+    }
+
+    .wrapperFormCall {
+        width: 70%;
+        margin: 2rem auto 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .wrapperFormCall {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .containerContacts, .containerAddress {
+        margin-bottom: 1rem;
+    }
+}

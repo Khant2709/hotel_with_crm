@@ -1,0 +1,184 @@
+.calendarContainer {
+  width: 25rem;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* TITLE*/
+.header {
+  width: 100%;
+  font-size: calc(14px + (24 - 14) * (100vw - 320px) / (1920 - 320));
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.arrow {
+  width: 1rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.arrowTransform {
+  transform: rotate(180deg);
+}
+
+/*CONTAINER WEEK name */
+.days,
+.daysHeader {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1rem;
+}
+
+.daysHeader {
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--colorMain);
+  margin-bottom: 1rem;
+}
+
+.dayName {
+  width: 40px;
+  height: auto;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* All days */
+
+.day {
+  text-align: center;
+}
+
+.day.disabled {
+  color: rgba(128, 128, 128, 0.75);
+}
+
+.day p {
+  width: 40px;
+  height: 40px;
+  font-size: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.day p:hover {
+  cursor: pointer;
+}
+
+/* MARKER DAY */
+
+.today,
+.selected,
+.verificationReserv,
+.verificationNoReserv,
+.reservation {
+  width: 100%;
+  height: 100%;
+}
+
+.today,
+.selected,
+.verificationReserv,
+.verificationNoReserv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.today {
+  font-weight: bold;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.selected {
+  background-color: rgb(147, 147, 147);
+  border-radius: 8px;
+}
+
+.verificationReserv,
+.verificationNoReserv {
+  color: white;
+  border-radius: 50%;
+}
+
+.verificationReserv,
+.circleRed {
+  background: rgba(26, 255, 5, 0.75);
+}
+
+.verificationNoReserv,
+.circleGreen {
+  background: rgba(255, 5, 5, 0.75);
+}
+
+.circleGray,
+.reservation,
+.day p:hover {
+  background-color: rgba(196, 196, 196, 0.76);
+  border-radius: 8px;
+}
+
+/*BOTTOM description */
+
+.descriptionMarker {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.wrapperRow {
+  display: flex;
+}
+
+.circleRed,
+.circleGreen,
+.circleGray {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .calendarContainer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendarContainer,
+  .dayName,
+  .day {
+    width: 100%;
+  }
+
+  .arrow {
+    width: 0.75rem;
+    height: 1.125rem;
+  }
+
+  .daysHeader {
+    margin-bottom: 0.5rem;
+  }
+
+  .day p {
+    width: 100%;
+    height: 30px;
+    font-size: 1rem;
+  }
+
+  .wrapperRow {
+    font-size: 1rem;
+  }
+}

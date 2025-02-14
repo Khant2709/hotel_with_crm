@@ -1,0 +1,15 @@
+.swiper {
+    width: 70%;
+    height: 100%;
+}
+
+.slide {
+    width: 70%;
+    height: 25rem;
+
+    border-radius: var(--BR12);
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

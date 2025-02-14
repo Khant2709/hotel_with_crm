@@ -1,0 +1,169 @@
+.img1, .img2, .img3, .img4, .img5, .img6, .img7, .img8, .img9 {
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+}
+
+.img1, .img8 {
+    width: 11rem;
+    height: 11rem;
+    border: 20px solid var(--colorMain);
+}
+
+.img2, .img5 {
+    width: 24rem;
+    height: 24rem;
+    border: 10px solid var(--colorMain);
+}
+
+.img3, .img4 {
+    width: 13rem;
+    height: 13rem;
+    border: 4px solid var(--colorMain);
+}
+
+.img6, .img7 {
+    width: 11rem;
+    height: 11rem;
+    border: 6px solid var(--colorMain);
+}
+
+.img1 {
+    bottom: 8%;
+    left: 10%;
+}
+
+.img2 {
+    left: 13%;
+}
+
+.img3 {
+    left: 37%;
+    top: 25%;
+}
+
+.img4 {
+    left: 28%;
+    bottom: 12%;
+}
+
+.img5 {
+    left: 48%;
+    bottom: 10%;
+}
+
+.img6 {
+    right: 25%;
+}
+
+.img7 {
+    right: 15%;
+    bottom: 10%;
+}
+
+.img8 {
+    right: 20%;
+    top: 35%;
+}
+
+.img9 {
+    width: 32rem;
+    height: 32rem;
+    border: 20px solid var(--colorMain);
+
+    right: -15%;
+}
+
+@media (max-width: 1600px) {
+    .img3 {
+        left: 40%;
+    }
+
+    .img4 {
+        left: 33%;
+    }
+
+    .img5 {
+        left: 52%;
+    }
+
+    .img6 {
+        right: 20%;
+    }
+
+    .img7 {
+        right: 10%;
+    }
+
+    .img8 {
+        right: 5%;
+    }
+
+    .img9 {
+        display: none;
+    }
+}
+
+@media (max-width: 1250px) {
+    .img1 {
+        left: -5%;
+    }
+
+    .img2 {
+        left: 5%;
+    }
+
+
+    .img3 {
+        left: 38%;
+    }
+
+    .img4 {
+        left: 25%;
+    }
+
+    .img5 {
+        left: 52%;
+    }
+
+    .img6 {
+        right: 20%;
+    }
+
+    .img7 {
+        right: 2%;
+    }
+
+    .img8 {
+        right: -5%;
+    }
+}
+
+@media (max-width: 1100px) {
+    .img2 {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    .img4 {
+        left: 20%;
+    }
+
+    .img5 {
+        left: 40%
+    }
+
+    .img6 {
+        right: 30%;
+    }
+
+    .img8 {
+        width: 16rem;
+        height: 16rem;
+        top: 15%;
+    }
+
+    .img1, .img3 {
+        display: none;
+    }
+}

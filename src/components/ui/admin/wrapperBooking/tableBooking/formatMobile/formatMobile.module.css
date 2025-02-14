@@ -1,0 +1,61 @@
+.containerCards {
+    width: 100%;
+    padding: 0.25rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.containerCurrentCard {
+    width: 100%;
+    height: 42px;
+    padding: 1rem 0.75rem;
+    border-radius: 8px;
+    background-color: rgba(180, 180, 180, 0.15);
+    box-shadow: 0 0 1px 2px rgba(79, 70, 229, 0.4);
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+.activeCard {
+    padding: 1.5rem 0.75rem;
+    height: auto;
+}
+
+.rowCard {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.label {
+    margin-right: 1rem;
+}
+
+.rowCard p:last-child, .rowCard a {
+    text-align: right;
+}
+
+.apartment {
+    max-width: 10rem;
+    white-space: nowrap; /* Текст не переносится */
+    overflow: hidden; /* Обрезаем всё за пределами блока */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
+.btn {
+    color: white;
+    margin-top: 1rem;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    background-color: #4f46e5;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}

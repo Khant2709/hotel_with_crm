@@ -1,0 +1,99 @@
+/* ДОРАБОТАТЬ! - для поиска задач по проекту*/
+
+:root {
+  /*основные цвета отелей*/
+  --color_1_Hotel_1: #96CFD2;
+  --color_1_Hotel_2: #9A7243;
+  --color_1_Hotel_3: #76C5FF;
+  --color_1_Hotel_4: #6DA2C2;
+
+  /*второстепенные цвета отелей*/
+  --color_2_Hotel_1: #EBF9FA;
+  --color_2_Hotel_2: #f3e4d4;
+  --color_2_Hotel_3: #ECF6FD;
+  --color_2_Hotel_4: #E8F6FF;
+
+  /*цвета отелей при наведении*/
+  --color_hover_Hotel_1: rgb(26, 58, 73);
+  --color_hover_Hotel_2: rgb(108, 67, 19);
+  --color_hover_Hotel_3: rgb(48, 112, 157);
+  --color_hover_Hotel_4: rgb(21, 79, 115);
+
+  --colorMain: #76C5FF;
+  --colorMain2: #ECF6FD;
+  --colorHoverMain: rgb(48, 112, 157);
+
+  --colorMainTextWhite: #FFFFFF;
+  --colorMainTextBlack: #000000;
+
+  --colorSeconderyTextWhite: rgba(255, 255, 255, 0.6);
+  --colorSeconderyTextBlack: rgba(0, 0, 0, 0.5);
+
+  --colorBackground: rgb(243, 249, 255);
+
+  --widthComputer: 60%;
+  --width1600: 75%;
+  --width1250: 90%;
+
+  --colorBackgroundMobile: #9EC6DE;
+  --marginCalc: calc(32px + (64 - 32) * (100vw - 900px) / (1920 - 900));
+  --boxShadowMy: 2px 4px 4px 2px rgba(0, 0, 0, 0.25);
+  --BR12: 12px;
+}
+
+/*
+  hotel1 - Шикарный вид
+  hotel2 - Бор'О'Дача
+  hotel3 - Вижу море
+  hotel4 - Сан Марина
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--colorBackground);
+}
+
+
+@media (max-width: 1600px) {
+  .test {
+    margin: 4rem 0;
+  }
+}
+
+@media (max-width: 1250px) {
+
+}
+
+@media (max-width: 1100px) {
+
+}
+
+@media (max-width: 900px) {
+  .test {
+    margin: 2rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 600px) {
+
+}
+
+@media (max-width: 480px) {
+
+}
+
+@media (max-width: 360px) {
+
+}
+
+/*Font size from title*/
+/*font-size: calc(24px + (48 - 24) * (100vw - 480px) / (1920 - 480));*/

@@ -1,0 +1,58 @@
+.wrapperDashboard {
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    gap: 2rem;
+}
+
+.wrapperLayout {
+    width: 100%;
+    height: 100vh;
+}
+
+/*left Navbar*/
+.containerLayout {
+    width: 15rem;
+    height: 100vh;
+    padding: 2rem 1rem;
+
+    background-color: #4f46e5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    letter-spacing: 2px;
+    color: white;
+    font-size: 1rem;
+
+    position: fixed;
+}
+
+.containerNavbar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.elNavbar {
+    margin-bottom: 0.5rem;
+    padding: 0.75rem 1rem;
+}
+
+.activePage, .elNavbar:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+@media (max-width: 1250px) {
+    .wrapperDashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .wrapperLayout {
+        display: none;
+    }
+
+    .containerLayout {
+        display: none;
+    }
+}

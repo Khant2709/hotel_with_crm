@@ -1,0 +1,28 @@
+.titleCalendar {
+    font-size: calc(20px + (24 - 20) * (100vw - 480px) / (1920 - 480));
+    margin-top: 2rem;
+    opacity: 0.6;
+}
+
+.wrapperCalendar {
+    width: 40rem;
+    margin: 2rem auto 0;
+    padding: 2rem;
+    background: white;
+    border: 1px solid var(--colorMain);
+    border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+    .wrapperCalendar {
+        width: 28rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .wrapperCalendar {
+        width: 95%;
+        margin-top: 1rem;
+        padding: 1rem;
+    }
+}

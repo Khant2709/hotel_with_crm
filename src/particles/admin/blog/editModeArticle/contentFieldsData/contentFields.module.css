@@ -1,0 +1,85 @@
+.wrapperMain {
+    width: 100%;
+
+    margin-top: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.title {
+    font-size: calc(20px + (24 - 20) * (100vw - 480px) / (1920 - 480));
+}
+
+.wrapperRowField {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(79, 70, 229, 0.25);
+}
+
+.rowField {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.boxValue {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    opacity: 0.75;
+    cursor: pointer;
+}
+
+.label, .sublabel {
+    font-size: calc(16px + (20 - 16) * (100vw - 480px) / (1920 - 480));
+    align-self: center;
+}
+
+.sublabel {
+    margin-left: 2rem;
+}
+
+.errorText {
+    margin-top: 1rem;
+    color: rgba(255, 0, 0, 0.75);
+}
+
+.helpText {
+    opacity: 0.7;
+}
+
+.containerBtns {
+    margin-top: 1rem;
+    display: flex;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .rowField {
+        flex-direction: column;
+        justify-content: normal;
+        align-items: normal;
+        gap: 2rem;
+    }
+
+    .rowField input {
+        min-width: 100%;
+    }
+
+    .errorText {
+        margin-top: 0.5rem;
+    }
+}

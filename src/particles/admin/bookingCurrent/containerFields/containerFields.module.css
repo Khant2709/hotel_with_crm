@@ -1,0 +1,67 @@
+.wrapperFields {
+    width: 100%;
+
+    margin-top: var(--marginCalc);
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.subtitle {
+    font-size: calc(20px + (32 - 20) * (100vw - 480px) / (1920 - 480));
+}
+
+
+.rowField {
+    width: 100%;
+
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(79, 70, 229, 0.25);
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.labelField, .valueField {
+    font-size: calc(16px + (20 - 16) * (100vw - 480px) / (1920 - 480));
+}
+
+.labelField {
+    font-weight: bold;
+    opacity: 0.7;
+    margin-right: 1rem;
+}
+
+.valueField {
+    text-align: right;
+}
+
+.inp , .selec , .txtArea ,.fieldView {
+    border: 1px solid rgba(79, 70, 229, 0.25);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.txtArea {
+    width: 500px;
+    height: 200px;
+    resize: none;
+}
+
+@media (max-width: 768px) {
+    .rowField {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: normal;
+    }
+
+    .valueField {
+        text-align: left;
+    }
+
+    .txtArea {
+        width: 100%;
+    }
+}

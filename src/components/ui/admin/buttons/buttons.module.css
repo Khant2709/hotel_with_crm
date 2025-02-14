@@ -1,0 +1,40 @@
+.baseBtn {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    color: white;
+    font-size: calc(16px + (20 - 16) * (100vw - 480px) / (1920 - 480));
+    cursor: pointer;
+    border: 2px solid transparent;
+    background-color: #808080;
+}
+
+.saveBtn {
+    background-color: #42ce6a;
+}
+
+.deleteBtn {
+    background-color: #e34848;
+}
+
+.archiveBtn {
+    background-color: #4f46e5;
+}
+
+.lightBtn {
+    border-color: rgba(79, 70, 229, 0.5);
+    background-color: white;
+    color: black;
+}
+
+.baseBtn:hover {
+    border-color: #4d4d4d;
+}
+
+.baseBtn:active {
+    transform: scale(0.9);
+    color: black;
+}
+
+.lightBtn {
+
+}

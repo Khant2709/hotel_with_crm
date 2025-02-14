@@ -1,0 +1,22 @@
+.input {
+    width: 100%;
+    /*font-size: calc(16px + (20 - 16) * (100vw - 480px) / (1920 - 480));*/
+
+
+    /*padding: 0.5rem 1rem;*/
+    /*border: 1px solid var(--colorMain);*/
+    /*border-radius: 8px;*/
+}
+
+.label {
+    /*font-size: 13px;*/
+    /*letter-spacing: 1px;*/
+    /*display: flex;*/
+    /*margin-bottom: 1rem;*/
+}
+
+.label input {
+    width: 1.5rem;
+    height: auto;
+    margin-right: 1rem;
+}

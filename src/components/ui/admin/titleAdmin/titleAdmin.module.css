@@ -1,0 +1,5 @@
+.title {
+    font-size: calc(24px + (32 - 24) * (100vw - 480px) / (1920 - 480));
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(79, 70, 229, 0.25);
+}

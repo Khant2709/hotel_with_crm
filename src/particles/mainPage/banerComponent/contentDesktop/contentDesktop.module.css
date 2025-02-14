@@ -1,0 +1,94 @@
+.wrapperHotels {
+    width: var(--widthComputer);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.wrapperHotels a {
+    text-decoration: none;
+}
+
+.containerHotel, .faded {
+    height: calc(400px + (480 - 400) * (100vw - 1250px) / (1920 - 1250));
+    width: 100%;
+    border-radius: 0.75rem;
+}
+
+.containerHotel {
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: var(--boxShadowMy);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    position: relative;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    transition: transform 0.3s ease;
+}
+
+.containerHotel:hover {
+    transform: scale(1.02);
+    transition: transform 0.5s ease;
+    cursor: pointer;
+}
+
+.containerHotel hr {
+    width: 100%;
+    border: 1px solid white;
+}
+
+.hotelName, .hotelAddress {
+    text-align: center;
+    text-shadow: 1px 1px 4px black;
+    color: var(--colorMainTextWhite);
+}
+
+.hotelName {
+    font-size: calc(20px + (32 - 20) * (100vw - 480px) / (1920 - 480));
+}
+
+.hotelAddress {
+    font-size: calc(14px + (22 - 14) * (100vw - 480px) / (1920 - 480));
+    margin-bottom: 1rem;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+
+}
+
+.faded {
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+}
+
+@media (max-width: 1600px) {
+    .wrapperHotels {
+        width: var(--width1600);
+    }
+}
+
+@media (max-width: 1250px) {
+    .wrapperHotels {
+        width: var(--width1250);
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .containerHotel, .faded {
+        height: calc(240px + (200 - 240) * (100vw - 768px) / (1250 - 768));
+    }
+
+    .containerHotel hr {
+        display: none;
+    }
+}
