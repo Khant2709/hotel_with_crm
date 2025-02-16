@@ -12,7 +12,7 @@ import {notifyShowToast} from "../../../utils/showToast";
 
 import {downloadClients} from "../../../particles/admin/clients/downloadClients";
 
-import {clients} from "../../../services/newApi";
+import {clients} from "../../../services/api";
 
 
 const ClientsPage = () => {

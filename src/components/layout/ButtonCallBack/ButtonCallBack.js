@@ -8,7 +8,7 @@ import {handleFieldChange} from "../../../utils/handleFieldChange";
 import {formatPhoneWithoutMask} from "../../../utils/mask/transfomNumber";
 import {checkAdminPath} from "../../../utils/admin/checkAdminPath";
 
-import {connection} from '../../../services/newApi';
+import {connection} from '../../../services/api';
 
 import {fieldsData} from "./fieldsData";
 

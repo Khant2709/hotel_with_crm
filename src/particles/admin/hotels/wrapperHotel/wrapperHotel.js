@@ -22,7 +22,7 @@ const WrapperHotel = ({hotel, updateHotelData}) => {
     return (
         <div className={styles.wrapperMain}>
             <TitleAdmin text={hotel?.name || 'Страница отеля'}/>
-            <ContainerCategory setActiveCategory={setActiveCategory}/>
+            <ContainerCategory setActiveCategory={setActiveCategory} hotelId={hotel?.id}/>
             {isHotelOrContacts &&
             <ComponentHotelAndContacts hotel={hotel} activeCategory={activeCategory} updateData={updateData}/>}
             {hotel && activeCategory === 'hotel_faq' &&

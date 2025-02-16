@@ -10,7 +10,7 @@ import {
     Contacts,
 } from "./footerContent.jsx";
 
-import {hotels} from '../../../services/newApi.js';
+import {hotels} from '../../../services/api.js';
 
 import {checkAdminPath} from "../../../utils/admin/checkAdminPath";
 

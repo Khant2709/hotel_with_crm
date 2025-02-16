@@ -21,18 +21,18 @@ function createField({type, label, value, fn = undefined, link = '#'}) {
  * @param {Object} params.booking - Данные бронирования.
  * @param {Object} params.currentHotel - Текущий отель.
  * @param {Object} params.currentApartment - Текущий номер.
- * @param {Function} params.changeCardStatus - Функция для изменения состояния карточки.
+ * @param {Function} params.toggleCardStatus - Функция для изменения состояния карточки.
  * @param {string} params.startDataReserv - Дата начала бронирования.
  * @param {string} params.endDataReserv - Дата окончания бронирования.
  * @returns {Array} - Массив полей для отображения.
  */
-const fieldsData = ({booking, currentHotel, currentApartment, changeCardStatus, startDataReserv, endDataReserv}) => {
+const fieldsData = ({booking, currentHotel, currentApartment, toggleCardStatus, startDataReserv, endDataReserv}) => {
     return [
         createField({
             type: 'bookingId',
             label: 'Бронь:',
             value: booking.id,
-            fn: () => changeCardStatus(booking.id),
+            fn: () => toggleCardStatus(booking.id),
         }),
         createField({
             type: 'name',

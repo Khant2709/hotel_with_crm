@@ -1,4 +1,4 @@
-import {hotels} from "../services/newApi";
+import {hotels} from "../services/api";
 import {DEFAULT_CONTACTS} from "../config/envData";
 
 export const getContactsHotel = async (setContactsData) => {

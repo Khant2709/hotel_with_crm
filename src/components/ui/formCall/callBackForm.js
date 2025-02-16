@@ -12,7 +12,7 @@ import {
 import {formatPhoneWithoutMask} from "../../../utils/mask/transfomNumber";
 import {handleFieldChange} from "../../../utils/handleFieldChange";
 
-import {callBackRequest} from "../../../services/api";
+import {connection} from "../../../services/api";
 
 import styles from "./formCall.module.css";
 import stylesFontsT from "../../../styles/fonts/timesNewRoman.module.css";
@@ -83,7 +83,7 @@ const CallBackForm = ({text, numberHotel}) => {
             const data = prepareFormData();
 
             try {
-                const result = await callBackRequest(data);
+                const result = await connection.callBack(data);
                 alert(result.status === 200 ? result.data.message : result.data.errorText);
             } catch (error) {
                 console.debug("Error:", error);

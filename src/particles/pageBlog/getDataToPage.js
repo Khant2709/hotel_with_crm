@@ -1,4 +1,4 @@
-import {articles} from "../../services/newApi";
+import {articles} from "../../services/api";
 
 export const getDataToPage = async () => {
     try {

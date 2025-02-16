@@ -1,4 +1,4 @@
-import {clients} from "../../../services/newApi";
+import {clients} from "../../../services/api";
 
 export const downloadClients = async () => {
     try {

@@ -1,4 +1,4 @@
-import {auth} from '../services/newApi.js';
+import {auth} from './api.js';
 import {notifyShowToast} from "../utils/showToast";
 
 /**

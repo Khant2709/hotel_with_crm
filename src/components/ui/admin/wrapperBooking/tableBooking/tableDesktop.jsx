@@ -22,7 +22,7 @@ const TableDesktop = ({bookings, hotels, apartments, openBooking}) => {
             <tr>
                 <th/>
                 <th>№</th>
-                <th>Имя</th>
+                <th>ФИО</th>
                 <th>Телефон</th>
                 <th>Отель</th>
                 <th>Номер</th>

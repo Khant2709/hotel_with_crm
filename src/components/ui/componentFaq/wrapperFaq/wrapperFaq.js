@@ -18,7 +18,7 @@ const getFreshData = async (setCurrentData) => {
     if (faqData && faqData.status === 200) {
         setCurrentData({faqData: faqData.data});
     } else {
-        notifyShowToast('error', 'Произошла ошибка при обновлении данных, пожалуйста перезагрузите страницу или зайдите позднее.');
+        notifyShowToast('error', 'Произошла ошибка при обновлении данных блока FAQ, пожалуйста перезагрузите страницу или зайдите позднее.');
     }
 };
 
@@ -47,7 +47,7 @@ const WrapperFaq = ({ssrData, hasSlice}) => {
         }
     };
 
-    if (currentData.faqData.length === 0) return null;
+    if (!currentData?.faqData || currentData.faqData.length === 0) return null;
 
     const listFaq = hasSlice ? currentData.faqData.slice(0, 7) : currentData.faqData;
 

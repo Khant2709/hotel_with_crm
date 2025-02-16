@@ -7,7 +7,7 @@ import ContentFaq from "./contentFAQ/contentFAQ";
 import {notifyShowToast} from "../../../../../utils/showToast";
 import {handleFieldsChange} from "../../../../../utils/admin/adminHandleFieldChange";
 
-import {faq} from "../../../../../services/newApi";
+import {faq} from "../../../../../services/api";
 
 import {fieldsFAQData} from "../fields";
 

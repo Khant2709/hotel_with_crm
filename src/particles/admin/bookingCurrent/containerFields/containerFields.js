@@ -97,3 +97,4 @@ const FieldEdit = React.memo(({field, onChange, date, hotels, apartments}) => {
     const divValue = field.name === 'hotel_id' || field.name === 'apartment_id' ? field?.optionValue : field.value;
     return <p className={`${stylesFont.newRoman400} ${styles.fieldView}`}>{date || divValue || '--'}</p>;
 });
+FieldEdit.displayName = "FieldEdit";

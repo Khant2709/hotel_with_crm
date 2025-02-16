@@ -1,4 +1,4 @@
-import {faq} from '../../services/newApi';
+import {faq} from '../../services/api';
 import {HOTEL_ID} from "../../config/envData";
 import allRequest from "../../utils/allRequest";
 

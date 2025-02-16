@@ -39,3 +39,19 @@
     cursor: pointer;
     background-color: #4f46e5;
 }
+
+@media (max-width: 1000px) {
+    .containerSearcher {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .boxField input, .boxField select, .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .containerSearcher {
+        grid-template-columns: 1fr;
+    }
+}

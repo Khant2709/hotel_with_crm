@@ -1,0 +1,14 @@
+.wrapperContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.wrapperContent h2 {
+    font-size: calc(20px + (28 - 20) * (100vw - 480px) / (1920 - 480));
+}
+
+.wrapperContent p {
+    font-size: calc(20px + (22 - 20) * (100vw - 480px) / (1920 - 480));
+    text-indent: 2rem;
+}

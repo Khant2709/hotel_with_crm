@@ -12,7 +12,7 @@ import TitleAdmin from "../../../../components/ui/admin/titleAdmin/titleAdmin";
 import {useRedirectAdmin} from "../../../../hooks/useRedirectAdmin";
 import {useHotelsAndApartments} from "../../../../hooks/useGetDataHotelsAndApartments";
 
-import {booking, reservation} from "../../../../services/newApi";
+import {booking, reservation} from "../../../../services/api";
 
 import {notifyShowToast} from "../../../../utils/showToast";
 import {handleFieldsChange} from "../../../../utils/admin/adminHandleFieldChange";

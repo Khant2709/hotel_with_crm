@@ -1,7 +1,7 @@
 'use client';
 
 import React, {useContext, useEffect, useState} from "react";
-import {hotels, apartments} from "../services/newApi";
+import {hotels, apartments} from "../services/api";
 
 const HotelsAndApartmentsContext = React.createContext();
 

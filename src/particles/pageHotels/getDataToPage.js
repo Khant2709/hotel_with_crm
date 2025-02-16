@@ -1,4 +1,4 @@
-import {hotels} from "../../services/newApi";
+import {hotels} from "../../services/api";
 import allRequest from "../../utils/allRequest";
 
 /** Функция для получения данных для страницы отелей

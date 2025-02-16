@@ -1,4 +1,4 @@
-import {hotels, faq} from "../../../services/newApi";
+import {hotels, faq} from "../../../services/api";
 
 export const TYPES_REQUEST = {
     HOTEL: "hotelData",
@@ -13,7 +13,6 @@ const request = {
 export const getDataToPage = async (type, id, signal = null) => {
     try {
         const resultRequest = await request[type](id, signal)
-
 
         if (resultRequest.status === 200 && resultRequest?.data?.data?.length !== 0) {
             return {data: resultRequest.data.data}

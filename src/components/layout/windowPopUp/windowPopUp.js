@@ -8,7 +8,7 @@ import {formatPhoneWithoutMask} from "../../../utils/mask/transfomNumber";
 import {handleFieldChange} from "../../../utils/handleFieldChange";
 import {notifyShowToast} from "../../../utils/showToast";
 
-import {reservation} from '../../../services/newApi';
+import {reservation} from '../../../services/api';
 
 import {usePopUpWindow} from "../../../hooks/useWindowPopUp";
 

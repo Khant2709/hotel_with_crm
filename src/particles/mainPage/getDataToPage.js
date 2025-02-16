@@ -1,4 +1,4 @@
-import {hotels, faq} from "../../services/newApi";
+import {hotels, faq} from "../../services/api";
 import allRequest from "../../utils/allRequest";
 import {HOTEL_ID} from "../../config/envData";
 

@@ -6,7 +6,7 @@ import {notifyShowToast} from "../../../../../utils/showToast";
 import {handleFieldsChange} from "../../../../../utils/admin/adminHandleFieldChange";
 import {toggleHelpText, updateFields} from "../generalUtils";
 
-import {hotels} from "../../../../../services/newApi";
+import {hotels} from "../../../../../services/api";
 
 import {fieldsContactsData, fieldsHotelData} from "../fields";
 

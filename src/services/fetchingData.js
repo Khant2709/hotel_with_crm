@@ -1,4 +1,4 @@
-import {booking, articles} from "./newApi";
+import {booking, articles} from "./api";
 
 /**
  * Функция для получения данных броней
@@ -9,19 +9,17 @@ import {booking, articles} from "./newApi";
 export const fetchingBookingData = async (type, date = null) => {
     try {
         const fetchMap = {
-            all: booking.getAllBookings,
-            unconfirmed: booking.getUnverifiedBookings,
-            checkin: booking.getBookingsByDate,
-            checkout: booking.getBookingsByDate
+            all: () => booking.getAllBookings(),
+            unconfirmed: () => booking.getUnverifiedBookings(),
+            checkin: (date) => booking.getBookingsByDate('checkin', date),
+            checkout: (date) => booking.getBookingsByDate('checkout', date)
         };
 
         if (!fetchMap[type]) {
             throw new Error(`Неизвестный тип запроса: ${type}`);
         }
 
-        const response = type === 'byDate' && date
-            ? await fetchMap[type]("checkin", date)
-            : await fetchMap[type]();
+        const response = await fetchMap[type](date);
 
         if (response?.status >= 200 && response?.status < 300) {
             return response?.data?.data || [];

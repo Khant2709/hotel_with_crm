@@ -1,4 +1,4 @@
-import {apartments} from "../../../../../services/newApi";
+import {apartments} from "../../../../../services/api";
 
 export const fetchApartment = async ({hotelId, isImageFetch = false, apartmentId, signal = null}) => {
     try {

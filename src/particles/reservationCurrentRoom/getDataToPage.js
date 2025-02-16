@@ -1,4 +1,4 @@
-import {apartments, booking} from "../../services/newApi";
+import {apartments, booking} from "../../services/api";
 import allRequest from "../../utils/allRequest";
 
 export const getDataToPage = async (id, requestType) => {

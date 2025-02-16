@@ -9,13 +9,7 @@ import {getFullPathImage} from "../../../../utils/getFullPathImage";
 import {handleFieldsChange} from "../../../../utils/admin/adminHandleFieldChange";
 import {notifyShowToast} from "../../../../utils/showToast";
 
-import {
-    createArticle,
-    createArticleImage, deleteArticle,
-    deleteArticleImage,
-    updateArticleData,
-    updateArticleImage
-} from "../../../../services/api";
+import {articles} from '../../../../services/api';
 
 import {fieldsArticleData, fieldsArticleImages} from "../fields";
 
@@ -95,8 +89,8 @@ const EditModeArticle = ({currentArticle, getUpdateData, mode, setMode}) => {
             let result;
             if (isDelete) {
                 result = modeDelete === 'article'
-                    ? await deleteArticle(currentArticle.id)
-                    : await deleteArticleImage(selectedImageId);
+                    ? await articles.deleteArticle(currentArticle.id)
+                    : await articles.deleteArticleImage(selectedImageId);
             } else {
                 result = await createOrUpdate();
             }
@@ -144,16 +138,16 @@ const EditModeArticle = ({currentArticle, getUpdateData, mode, setMode}) => {
 
         switch (mode) {
             case MODES.CREATE_DATA:
-                return await createArticle(formData);
+                return await articles.createArticle(formData);
             case MODES.UPDATE_DATA:
                 formData.append('id', currentArticle.id);
-                return await updateArticleData(formData);
+                return await articles.updateArticleData(formData);
             case MODES.CREATE_IMAGE:
                 formData.append('id_article', currentArticle.id);
-                return await createArticleImage(formData);
+                return await articles.createArticleImage(formData);
             case MODES.UPDATE_IMAGES:
                 formData.append('id', selectedImageId);
-                return await updateArticleImage(formData);
+                return await articles.updateArticleImage(formData);
             default:
                 return;
         }

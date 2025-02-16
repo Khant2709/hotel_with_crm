@@ -7,17 +7,17 @@ export const fieldsFilter = [
         label: 'Номер брони:',
         typeField: 'input',
         name: 'id',
-        type: 'text',
+        type: 'number',
         placeholder: 'Введите номер брони'
     }),
     createFieldFilter({
-        label: 'Имя гостя:',
+        label: 'ФИО гостя:',
         typeField: 'input',
         name: 'guestName',
         type: 'text',
-        placeholder: 'Введите имя гостя'
+        placeholder: 'Введите что либо..'
     }),
-    createFieldFilter({label: 'Дата заезда:', typeField: 'input', name: 'dateBooking', type: 'date'}),
+    createFieldFilter({label: 'Дата:', typeField: 'input', name: 'dateBooking', type: 'date'}),
     createFieldFilter({label: 'Отель:', typeField: 'select', name: 'hotelId', optionalType: 'hotels'}),
     createFieldFilter({label: 'Номер:', typeField: 'select', name: 'apartmentId', optionalType: 'apartments'}),
 ];
