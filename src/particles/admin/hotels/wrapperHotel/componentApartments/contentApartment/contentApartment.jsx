@@ -52,7 +52,7 @@ const ContentApartment = ({
                                     apartmentId={currentApartment.id}
                                     setActiveCategory={setActiveCategory}
                                     indexShowHelp={indexShowHelp}
-                                    toggleStateHelpText={handleToggleHelpText}
+                                    handleToggleHelpText={handleToggleHelpText}
             />}
         </div>
     );

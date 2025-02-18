@@ -6,11 +6,11 @@ import ContentContainerImages from "./contentContainerImages";
 
 import {fetchApartmentImage} from "../../apartmentRequests";
 
-import {getFullPathImage} from "../../../../../../../utils/getFullPathImage";
 import {notifyShowToast} from "../../../../../../../utils/showToast";
 import {handleFieldsChange} from "../../../../../../../utils/admin/adminHandleFieldChange";
 
 import {fieldsApartmentImages} from "../../../fields";
+import {getUpdatedImageFields} from "../../../../../../../utils/admin/getpupdatedImageFields";
 
 
 const WrapperApartmentImages = ({
@@ -19,7 +19,7 @@ const WrapperApartmentImages = ({
                                     apartmentId,
                                     setActiveCategory,
                                     indexShowHelp,
-                                    toggleStateHelpText
+                                    handleToggleHelpText
                                 }) => {
     const [fields, setFields] = useState(fieldsApartmentImages);
     const [indexEditField, setIndexEditField] = useState(null);
@@ -31,19 +31,7 @@ const WrapperApartmentImages = ({
 
     const toggleEditMode = (index, dataFields) => {
         if (index && dataFields) {
-            const updateFields = fields.map(field => {
-                    if (field.name === 'image') {
-                        const urlImage = getFullPathImage(dataFields.image_path, dataFields.image_name);
-                        return {...field, value: urlImage}
-                    }
-
-                    if (field.name === 'image_priority') {
-                        return {...field, value: dataFields.image_priority}
-                    }
-
-                    return field
-                }
-            );
+            const updateFields = getUpdatedImageFields(fieldsApartmentImages, dataFields);
             setFields(updateFields);
             setIndexEditField(index);
         } else {
@@ -72,7 +60,7 @@ const WrapperApartmentImages = ({
                                 setIsCreate={setIsCreate}
                                 actionRequest={actionRequest}
                                 indexShowHelp={indexShowHelp}
-                                toggleStateHelpText={toggleStateHelpText}
+                                handleToggleHelpText={handleToggleHelpText}
                                 apartmentImages={apartmentImages}
                                 indexEditField={indexEditField}
                                 toggleEditMode={toggleEditMode}

@@ -24,9 +24,8 @@ export const makeRequest = async (method,
             ...options,
         };
         const isGetRequest = method.toLowerCase() === 'get';
-        const isDeleteRequestAndHasData = method.toLowerCase() === 'delete' && data;
 
-        if (!isGetRequest || isDeleteRequestAndHasData) {
+        if (!isGetRequest && data !== null && data !== undefined) {
             config.data = data;
         }
 

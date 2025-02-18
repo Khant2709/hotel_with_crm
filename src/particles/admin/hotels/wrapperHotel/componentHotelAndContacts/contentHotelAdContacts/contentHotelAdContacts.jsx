@@ -30,7 +30,6 @@ const ContentHotelAdContacts = ({
                                    className={styles.icon}/>
                             <p className={styles.label}>
                                 {field.label}
-
                             </p>
                         </div>
                         {renderField(field, handleFieldChange)}

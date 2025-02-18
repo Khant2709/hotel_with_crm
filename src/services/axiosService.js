@@ -19,23 +19,3 @@ const createAxios = (contentType) => {
 
 export const axiosJson = createAxios('application/json');
 export const axiosFormData = createAxios('multipart/form-data');
-
-
-// Клиентский экземпляр для запросов без токена
-export const axiosClient = axios.create({
-    baseURL: BASE_URL,
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    timeout: TIMEOUT,
-    withCredentials: true, // Разрешить отправку cookies
-});
-
-export const axiosAdmin = axios.create({
-    baseURL: BASE_URL,
-    headers: {
-        'Content-Type': 'multipart/form-data',
-    },
-    timeout: TIMEOUT,
-    withCredentials: true,
-});

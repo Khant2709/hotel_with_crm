@@ -2,12 +2,14 @@ import {hotels, faq} from "../../../services/api";
 
 export const TYPES_REQUEST = {
     HOTEL: "hotelData",
-    FAQ: "faqData"
+    IMAGES: "hotelImages",
+    FAQ: "faqData",
 };
 
 const request = {
     "hotelData": (id, signal) => hotels.getCurrentHotelData(id, signal),
-    "faqData": (id, signal) => faq.getFAQ(id, signal)
+    "faqData": (id, signal) => faq.getFAQ(id, signal),
+    "hotelImages": (id) => hotels.getImagesCurrentHotel(id)
 };
 
 export const getDataToPage = async (type, id, signal = null) => {

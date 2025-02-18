@@ -1,5 +1,6 @@
 import {makeRequest} from "./makeRequest";
 import {HOTEL_ID} from "../../config/envData";
+import {data} from "autoprefixer";
 
 /** Получает данные всех отелей. */
 export const getHotelsData = async () => makeRequest('get', '/hotels');
@@ -9,7 +10,7 @@ export const getMainHotelsData = async () => makeRequest('get', '/hotels/main');
 
 /** Получает данные текущего отеля.
  @param {string} id - ID отеля.
- @param {object} signal - сигнал для обрыва запроса.
+ @param {object || null} signal - сигнал для обрыва запроса.
  */
 export const getCurrentHotelData = async (id, signal) =>
     makeRequest('get', `/hotels/${id}`, null, null, false, signal);
@@ -35,4 +36,4 @@ export const updateContactsHotel = async (data) => makeRequest('patch', '/hotels
 /** Обновляет изображения отеля.
  @param {Object} data - Новое изображение.
  */
-// СОЗДАТЬ
+export const updateImageHotel = async (data) => makeRequest('patch', '/images/image', data, null, true);

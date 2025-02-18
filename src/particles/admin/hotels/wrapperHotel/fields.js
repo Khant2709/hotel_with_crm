@@ -431,6 +431,7 @@ export const fieldsApartmentImages = [
         name: 'image_priority',
         value: '',
         placeholder: 'Приоритет показа',
+        isEdit: false,
         validation: (value) => validateNumber(value),
         errorText: '',
         helpText: 'Отображает в каком именно порядке будут показаны фотографии. От 1 до ...'

@@ -29,8 +29,6 @@ export const updateApartmentDetails = async (filterFields, apartmentId) => {
         }
     });
 
-    console.log(filterFields)
-
     return await apartments.updateApartmentData(formData);
 };
 
@@ -56,7 +54,6 @@ const requestImage = {
 }
 
 export const fetchApartmentImage = async (type, id, fields, apartmentId) => {
-    console.log({type, id, fields, apartmentId})
     try {
         let data;
 
@@ -83,9 +80,7 @@ export const fetchApartmentImage = async (type, id, fields, apartmentId) => {
 
         const response = await requestImage[type](data);
 
-        console.log({response})
         if (response.status >= 200 && response.status < 300) {
-            console.log(response?.data?.message)
             return response?.data?.message
         } else {
             throw new Error('Произошла ошибка при выполнении запроса.')
