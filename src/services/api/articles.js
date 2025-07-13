@@ -1,12 +1,25 @@
-import { makeRequest } from "./makeRequest";
+import {makeRequest} from "./makeRequest";
+
 
 /** Получает данные всех статей. */
-export const getAllArticles = async () => makeRequest('get', '/blog');
+export const getAllArticles = async (cacheAge) => makeRequest(
+    'get',
+    '/blog',
+    null,
+    null,
+    false,
+    cacheAge = null
+);
 
-/** Получает данные конкретной статьи.
- @param {string} id - ID статьи.
- */
-export const getCurrentArticle = async (id) => makeRequest('get', `/blog/${id}`);
+/** Получает данные конкретной статьи. */
+export const getCurrentArticle = async (id, cacheAge) => makeRequest(
+    'get',
+    `/blog/${id}`,
+    null,
+    null,
+    false,
+    cacheAge = null
+);
 
 /** Создает новую статью (запрос FORM DATA).
  @param {Object} data - Данные для создания статьи.

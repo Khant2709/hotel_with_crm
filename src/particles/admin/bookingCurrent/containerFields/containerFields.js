@@ -4,6 +4,7 @@ import {transformDateFormat} from '../../../../utils/getDay';
 
 import styles from './containerFields.module.css';
 import stylesFont from '../../../../styles/fonts/timesNewRoman.module.css';
+import {RESERVATION_STATUS} from "../../../../config/envData";
 
 const groups = [
     {key: 'guest_info', title: 'Данные гостя:'},
@@ -12,7 +13,6 @@ const groups = [
 ];
 
 const ContainerFields = ({fields, mode, onChange, hotels, apartments}) => {
-    // Мемоизируем отфильтрованные данные, чтобы избежать повторных вычислений при каждом ререндере
     const groupedFields = useMemo(() => {
         return groups.map(group => ({
             ...group,
@@ -27,11 +27,24 @@ const ContainerFields = ({fields, mode, onChange, hotels, apartments}) => {
                     <p className={`${stylesFont.newRoman700} ${styles.subtitle}`}>{title}</p>
                     {fields.map((field, i) => {
                         const isDateField = field.type === 'date';
-                        const isHotelOrApartment = field.name === 'hotel_id' || field.name === 'apartment_id';
-
                         const sliceDate = isDateField && field.value ? field.value.split('T')[0] : '';
                         const transformDate = sliceDate ? transformDateFormat(sliceDate) : '';
-                        const divValue = isHotelOrApartment ? field?.optionValue : field.value;
+                        let divValue;
+
+                        switch (field.name) {
+                            case 'hotel_id':
+                            case 'apartment_id':
+                                divValue = field?.optionValue;
+                                break;
+                            case 'sendToGuest':
+                                divValue = field.value === '1' ? 'Да' : 'Нет'
+                                break;
+                            case 'status':
+                                divValue = RESERVATION_STATUS[field.value];
+                                break;
+                            default:
+                                divValue = field.value;
+                        }
 
                         return (
                             <div className={`${stylesFont.newRoman400} ${styles.rowField}`} key={`${key}_${i}`}>
@@ -77,12 +90,26 @@ const FieldEdit = React.memo(({field, onChange, date, hotels, apartments}) => {
     }
 
     if (field.typeField === 'select') {
-        const options = field.name === 'hotel_id' ? hotels : field.name === 'apartment_id' ? apartments : [];
+        let options;
+        switch (field.name) {
+            case 'hotel_id':
+                options = hotels;
+                break;
+            case 'apartment_id':
+                options = apartments;
+                break;
+            case 'sendToGuest':
+                options = [{id: 0, value: 'Нет'}, {id: 1, value: 'Да'}];
+                break;
+            default:
+                options = [];
+                break;
+        }
         return (
             <select {...commonProps} className={`${stylesFont.newRoman400} ${styles.selec}`}>
                 {options.map(el => (
                     <option key={el.id} value={el.id}>
-                        {el.name || el.apartment_name}
+                        {el?.name || el?.apartment_name || el?.value}
                     </option>
                 ))}
             </select>
@@ -94,7 +121,20 @@ const FieldEdit = React.memo(({field, onChange, date, hotels, apartments}) => {
                          className={`${stylesFont.newRoman400} ${styles.txtArea}`}/>;
     }
 
-    const divValue = field.name === 'hotel_id' || field.name === 'apartment_id' ? field?.optionValue : field.value;
+    let divValue;
+
+    switch (field.name) {
+        case 'hotel_id':
+        case 'apartment_id':
+            divValue = field?.optionValue;
+            break;
+        case 'status':
+            divValue = RESERVATION_STATUS[field.value];
+            break;
+        default:
+            divValue = field.value;
+    }
+
     return <p className={`${stylesFont.newRoman400} ${styles.fieldView}`}>{date || divValue || '--'}</p>;
 });
 FieldEdit.displayName = "FieldEdit";

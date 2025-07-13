@@ -13,7 +13,7 @@ const MarkdownPage = () => {
     useRedirectAdmin();
 
     const [value, setValue] = useState('');
-    console.log({value})
+
     return (
         <div className={styles.mainWrapper}>
             <TitleAdmin text={'Шаблонизатор Markdown'}/>

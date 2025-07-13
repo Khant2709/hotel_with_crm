@@ -1,25 +1,38 @@
-import React from 'react';
+'use client'
+
+import React, {useMemo, useState} from 'react';
 
 import {PreloaderAdminProvider} from "../../hooks/usePreloaderAdmin";
+import {HotelsAndApartmentsProvider} from "../../hooks/useGetDataHotelsAndApartments";
+import {useWindowWidth} from "../../hooks/UseWidth";
 
 import NavbarAdmin from "../../components/layout/navbarAdmin/navbarAdmin";
 import PreloaderAdmin from "../../components/ui/preloader/preloaderAdmin";
 
 import styles from '../../styles/pageAdmin/adminLayout.module.css';
-import {HotelsAndApartmentsProvider} from "../../hooks/useGetDataHotelsAndApartments";
 
 export default function AdminLayout({children}) {
-    return (
-        <section className={styles.wrapperDashboard}>
-            <HotelsAndApartmentsProvider>
-                <PreloaderAdminProvider>
-                    <PreloaderAdmin/>
-                    <div className={styles.wrapperLayout}/>
-                    <NavbarAdmin/>
-                    {children}
+  const width = useWindowWidth();
+  const [toggleNavbar, setToggleNavbar] = useState(false);
 
-                </PreloaderAdminProvider>
-            </HotelsAndApartmentsProvider>
-        </section>
-    );
+  const handleToggleNav = () => {
+    setToggleNavbar(!toggleNavbar)
+  }
+
+  const isSmall = useMemo(() => width <= 1250, [width]);
+  const isHiddenNav = isSmall || toggleNavbar;
+
+  return (
+      <section className={`${styles.wrapperDashboard} ${isHiddenNav ? styles.hiddenNav : ''}`}>
+        <HotelsAndApartmentsProvider>
+          <PreloaderAdminProvider>
+            <PreloaderAdmin/>
+            <NavbarAdmin width={width} isHiddenNav={isHiddenNav} handleToggleNav={handleToggleNav}/>
+            <div className={styles.wrapperLayout}/>
+            {children}
+
+          </PreloaderAdminProvider>
+        </HotelsAndApartmentsProvider>
+      </section>
+  );
 };

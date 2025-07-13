@@ -1,0 +1,42 @@
+.containerFields {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.rowField {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.rowField p {
+  font-size: calc(16px + (20 - 16) * (100vw - 480px) / (1920 - 480));
+}
+
+.containerBtns {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .rowField {
+    flex-direction: column;
+    justify-content: normal;
+    align-items: normal;
+    gap: 1rem;
+  }
+
+  .rowField input, .rowField select {
+    min-width: 100%;
+  }
+
+  .containerBtns {
+    flex-direction: column;
+  }
+}

@@ -1,20 +1,27 @@
 import {makeRequest} from "./makeRequest";
 import {HOTEL_ID} from "../../config/envData";
 
+
 /** Получает данные всех номеров. */
-export const getAllApartments = async () => makeRequest('get', '/apartments');
+export const getAllApartments = async (cashAge) => makeRequest(
+    'get',
+    '/apartments',
+    null,
+    null,
+    false,
+    cashAge
+);
 
 /** Получает данные номеров по ID отеля. Если ID отеля не указан, используется HOTEL_ID.
  @param {string|null} hotelId - ID отеля.
  @param {object} signal - сигнал для обрыва запроса.
  */
 export const getApartmentByHotel = async (hotelId, signal) =>
-    makeRequest('get', `/apartments/hotel/${hotelId || HOTEL_ID}`, null, null, false, signal);
+    makeRequest('get', `/apartments/hotel/${hotelId || HOTEL_ID}`, null, null, false, null, signal);
 
-/** Получает данные конкретного номера.
- @param {string} id - ID номера.
- */
-export const getCurrentApartment = async (id) => makeRequest('get', `/apartments/${id}`);
+/** Получает данные конкретного номера. */
+export const getCurrentApartment = async (id, cacheAge) =>
+    makeRequest('get', `/apartments/${id}`, null, null, false, cacheAge = null);
 
 /** Получает изображения номера.
  @param {string} id - ID номера.

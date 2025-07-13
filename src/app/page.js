@@ -3,45 +3,51 @@ import React from "react";
 import {jsonLDMainPage} from "../data/seoData";
 import {metaDataMainPage} from "../data/metaData";
 
-import {getDataToPage} from "../particles/mainPage/getDataToPage";
 import WrapperMainPage from "../particles/mainPage/wrapperMainPage";
 import ErrorResponseData from "../components/ui/error/errorResponseData/errorResponseData";
+
+import {hotelsAPI, faqAPI} from '../services/api';
+import {batchRequest} from "../services/utils/requestUtils";
+
+import {TIME_CASH} from "../config/envData";
 
 
 export const metadata = metaDataMainPage;
 
 async function fetchData() {
-    try {
-        const {hotelsData, faqData} = await getDataToPage();
-        if (!hotelsData || hotelsData.status !== 200 || hotelsData.data.length === 0) throw new Error('Произошла ошибка, не уалось загрузить информацию.');
+    const data = {
+        hotelData: null,
+        allHotelsData: null,
+        faqData: null,
+    };
 
-        return {
-            hotelsData: hotelsData || [],
-            faqData: faqData || [],
-            error: false
-        };
-    } catch (error) {
-        console.error("Ошибка загрузки данных:", error);
+    const request = [
+        () => hotelsAPI.getCurrentHotelData(null, null, TIME_CASH["60min"]),
+        () => hotelsAPI.getMainHotelsData(TIME_CASH["60min"]),
+        () => faqAPI.getFAQ(null, null, TIME_CASH["60min"])
+    ];
 
-        return {
-            hotelsData: [],
-            faqData: [],
-            error: true
-        };
-    }
+    return await batchRequest(data, request);
 }
 
 export default async function Home() {
-    const {hotelsData, faqData, error} = await fetchData();
+    const {hotelData, allHotelsData, faqData} = await fetchData();
 
-    if (error) {
+    if (hotelData.status !== 200 || allHotelsData.status !== 200) {
         return <ErrorResponseData
             hasHeaderLine={true}
             page={"Main page"}
-            error={hotelsData}
+            error={hotelData}
             text={"Произошла ошибка, не уалось загрузить информацию."}
         />
     }
+
+    // сделать отображения картинок конкретного отеля в территории после удобств
+    const hotel = hotelData.data.data;
+    const banner = hotel.images.find(image => image.image_type === "banner");
+    const territoryImages = hotel.images.filter(image => image.image_type === "territory");
+    const allHotels = allHotelsData.data.data;
+    const faq = faqData.data.data;
 
     return (
         <>
@@ -49,9 +55,14 @@ export default async function Home() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLDMainPage)}}
             />
-            <WrapperMainPage ssrData={{hotelsData: hotelsData.data, faqData: faqData.data}}/>
+            <WrapperMainPage
+                banner={banner}
+                territoryImages={territoryImages}
+                allHotels={allHotels}
+                faq={faq}
+            />
         </>
     );
 };
 
-export const revalidate = 60;
+export const revalidate = TIME_CASH["60min"] / 1000;

@@ -16,14 +16,13 @@ const ContentArticles = ({articles, handleClick}) => {
                 })}
             </div>
         </div>
-
     );
 };
 
 export default ContentArticles;
 
 const CardArticle = ({article, handleClick}) => (
-    <div className={`${stylesFont.newRoman400} ${styles.cardArticle}`}>
+    <div className={`${stylesFont.newRoman400} ${styles.cardArticle}`} onClick={() =>handleClick(article.id)}>
         <div className={styles.previewImage}
              style={{backgroundImage: `url(${getFullPathImage(article.folder_img, article.preview_img_name)})`}}/>
         <p className={styles.title}>{article.title}</p>

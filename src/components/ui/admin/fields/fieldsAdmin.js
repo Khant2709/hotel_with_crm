@@ -1,14 +1,7 @@
 import styles from './fieldsAdmin.module.css';
 import stylesFont from '../../../../styles/fonts/timesNewRoman.module.css';
 
-/**
- * Компонент поля ввода.
- *
- * @param {Object} props - Пропсы компонента.
- * @param {Object} props.field - Данные поля.
- * @param {Function} props.onChange - Функция, вызываемая при изменении значения поля.
- * @returns {JSX.Element} - Компонент поля ввода.
- */
+/** Компонент поля ввода. */
 export const InputField = ({field, onChange}) => (
     <input type={field.type}
            placeholder={field.placeholder}
@@ -19,14 +12,7 @@ export const InputField = ({field, onChange}) => (
     />
 );
 
-/**
- * Компонент текстовой области.
- *
- * @param {Object} props - Пропсы компонента.
- * @param {Object} props.field - Данные поля.
- * @param {Function} props.onChange - Функция, вызываемая при изменении значения поля.
- * @returns {JSX.Element} - Компонент текстовой области.
- */
+/** Компонент текстовой области.*/
 export const TextAreaField = ({field, onChange}) => (
     <textarea placeholder={field.placeholder}
               name={field.name}
@@ -36,14 +22,7 @@ export const TextAreaField = ({field, onChange}) => (
     />
 );
 
-/**
- * Компонент выпадающего списка.
- *
- * @param {Object} props - Пропсы компонента.
- * @param {Object} props.field - Данные поля.
- * @param {Function} props.onChange - Функция, вызываемая при изменении значения поля.
- * @returns {JSX.Element} - Компонент выпадающего списка.
- */
+/** Компонент выпадающего списка.*/
 export const SelectField = ({field, onChange}) => (
     <select name={field.name}
             value={field.value}
@@ -55,27 +34,14 @@ export const SelectField = ({field, onChange}) => (
     </select>
 );
 
-/**
- * Компонент текстового поля.
- *
- * @param {Object} props - Пропсы компонента.
- * @param {string} props.text - Текст поля.
- * @returns {JSX.Element} - Компонент текстового поля.
- */
+/** Компонент текстового поля. */
 export const ClassicField = ({text}) => (
     <p className={`${stylesFont.newRoman400} ${styles.classic}`}>
         {text}
     </p>
 );
 
-/**
- * Компонент поля для загрузки файла.
- *
- * @param {Object} props - Пропсы компонента.
- * @param {Object} props.field - Данные поля.
- * @param {Function} props.onChange - Функция, вызываемая при изменении значения поля.
- * @returns {JSX.Element} - Компонент поля для загрузки файла.
- */
+/** Компонент поля для загрузки файла.*/
 export const FileField = ({field, onChange}) => (
     <div className={styles.fileInputWrapper}>
         <input
@@ -89,13 +55,7 @@ export const FileField = ({field, onChange}) => (
     </div>
 );
 
-/**
- * Компонент для отображения текущего изображения.
- *
- * @param {Object} props - Пропсы компонента.
- * @param {Object} props.field - Данные поля.
- * @returns {JSX.Element} - Компонент для отображения текущего изображения.
- */
+/** Компонент для отображения текущего изображения.*/
 export const ClassicFieldImage = ({field}) => (
     <div className={styles.previewWrapper}>
         <p className={stylesFont.newRoman400}>

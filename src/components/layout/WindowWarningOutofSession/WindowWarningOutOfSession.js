@@ -1,27 +1,32 @@
 'use client';
 
 import {useEffect, useState} from "react";
-import {useRouter} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 
-import {getDayStartSeason} from "../../../utils/getDay";
+import {getPeriodWork} from "../../../utils/getDay";
 
 import ContentWindow from "./contentWindow";
 
-const seasonDates = getDayStartSeason(); // Кешируем расчет дат
+const seasonDates = getPeriodWork(); // Кешируем расчет дат
 
-/**
- * Всплывающее окно вне рабочего сезона.
- * @returns {JSX.Element} - Футер сайта.
- */
+/** Всплывающее окно вне рабочего сезона */
 const WindowWarningOutOfSession = () => {
     const router = useRouter();
+    const pathname = usePathname();
     const [showWarning, setShowWarning] = useState(false);
 
     useEffect(() => {
-        const familiarized = sessionStorage.getItem("familiarized");
-        setShowWarning(familiarized !== 'Y');
+        const today = new Date();
+        const start = new Date(seasonDates.startSeason);
+        const end = new Date(seasonDates.endSeason);
 
-    }, [router])
+        const isInSeason = today >= start && today <= end;
+        const isFamiliarized = sessionStorage.getItem("familiarized");
+
+        if (!isInSeason && !isFamiliarized) {
+            setShowWarning(true);
+        }
+    }, [pathname]);
 
     const handleClose = () => {
         sessionStorage.setItem("familiarized", "Y");

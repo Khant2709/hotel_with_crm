@@ -62,6 +62,7 @@ const WindowPopUp = () => {
     const {showWindow, togglePopUpWindow, reservationData} = usePopUpWindow();
 
     const [fields, setFields] = useState(fieldsDefault);
+    const [isDisable, setIsDisable] = useState(false);
     const fieldCheckbox = fields.find(field => field.type === 'checkbox');
 
     /** Проверка на существование данных брони */
@@ -93,6 +94,8 @@ const WindowPopUp = () => {
     /** Функция для отправки запроса для создания брони */
     const sendReservation = async () => {
         if (checkDataReservation && checkFields) {
+            notifyShowToast('info', 'Заявка отправлена, дождитесь ответа, это займет не более 30сек.')
+            setIsDisable(true);
             const finishData = prepareReservationData({reservationData, fields});
 
             const result = await reservation.createReservation(finishData);
@@ -100,10 +103,12 @@ const WindowPopUp = () => {
             if (result.status === 200) {
                 notifyShowToast('success',
                     result?.data?.message || 'Благодарим за бронирование, прошло успешно. Вам должно придти письмо на указанную почту (в течении часа), если письмо не пришло напишите или позваните нам.');
+                setIsDisable(false)
                 togglePopUpWindow()
             } else {
                 notifyShowToast('error',
                     result?.response?.data?.errorText || 'Произшла ошибка при бронировании попробуйте пожалуйста заного.');
+                setIsDisable(false)
             }
         }
     };
@@ -124,10 +129,9 @@ const WindowPopUp = () => {
             handleFieldsChange={handleFieldsChange}
             hotelName={reservationData?.nameHotel || 'Ошибка'}
             apartmentName={reservationData?.nameApartment || 'Ошибка'}
-            disableBtn={!checkDataReservation || !checkFields}
+            disableBtn={!checkDataReservation || !checkFields || isDisable}
             togglePopUpWindow={togglePopUpWindow}
             dataReservationFields={dataReservationFields}
-
             sendReservation={sendReservation}
         />
     );

@@ -9,12 +9,7 @@ import {getApartmentsData} from "./getDataToPage";
 
 import {notifyShowToast} from "../../utils/showToast";
 
-/** Компонент обертка для страницы всех отелей с номерами
- * @param {object} props - Пропсы компонента.
- * @param {array} props.allHotels - Массив отелей полученный при серверном рендере.
- * @param {array} props.allApartments - Массив номеров полученные при серверном рендере (в последствии обновляется на свежие данные на клиенте).
- * @returns {JSX.Element} - Компонент всех отелей с номерами.
- * */
+/** Компонент обертка для страницы всех отелей с номерами */
 const WrapperAllHotelsApartments = ({allHotels, allApartments}) => {
     const searchParams = useSearchParams();
     const [freeApartments, setFreeApartments] = useState(allApartments);

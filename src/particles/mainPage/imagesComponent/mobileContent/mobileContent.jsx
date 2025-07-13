@@ -6,6 +6,7 @@ import 'swiper/css';
 import 'swiper/css/effect-cards';
 
 import styles from './mobileContent.module.css';
+import {getFullPathImage} from "../../../../utils/getFullPathImage";
 
 /** Контент фотографий (мобильная версия).
  * @param {Object} props - Пропсы компонента.
@@ -23,7 +24,7 @@ const MobileContent = ({images}) => (
             return (
                 <SwiperSlide key={i}
                              className={styles.slide}
-                             style={{backgroundImage: `url(${image.src})`}}
+                             style={{backgroundImage: `url(${getFullPathImage(image.image_path, image.image_name)})`}}
                 />
             )
         })}

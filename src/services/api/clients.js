@@ -1,11 +1,12 @@
 import {makeRequest} from "./makeRequest";
 
-/** Получает данные всех клиентов.
- @param {Object} data - Данные для фильтрации или поиска клиентов.
- */
-export const getAllClients = async (data) => makeRequest('post', '/clients', data);
 
-/** Скачивает файл с данными клиентов.
- @returns {Promise<Blob>} Файл с данными клиентов.
- */
-export const clientsDownload = async () => makeRequest('get', '/clients/download', null, null, false, {responseType: 'blob'});
+/** Получает данные всех клиентов.*/
+export const getAllClients = async () => makeRequest('get', '/clients');
+
+
+/** Получает данные всех клиентов.*/
+export const getCurrentClient = async (ph) => makeRequest('post', '/clients', {ph});
+
+/** Скачивает файл с данными клиентов. */
+export const clientsDownload = async () => makeRequest('get', '/clients/download', null, null, false, null, {responseType: 'blob'});

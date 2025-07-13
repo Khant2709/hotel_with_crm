@@ -1,12 +1,10 @@
 import {makeRequest} from "./makeRequest";
 import {HOTEL_ID} from "../../config/envData";
 
-/** Получает данные FAQ для отеля.
- @param {string|null} id - ID отеля (если не указан, используется HOTEL_ID).
- @param {object} signal - ID отеля (если не указан, используется HOTEL_ID).
- */
-export const getFAQ = async (id, signal) =>
-    makeRequest('get', `/faq/${id || HOTEL_ID}`, null, null, false, signal);
+
+/** Получает данные FAQ для отеля. */
+export const getFAQ = async (id, signal = null, cacheAge = null) =>
+    makeRequest('get', `/faq/${id || HOTEL_ID}`, null, null, false, cacheAge, signal);
 
 
 /** Создает новый FAQ.

@@ -8,9 +8,7 @@ import ContentLoginPage from "../../particles/admin/login/contentLoginPage";
 import {checkToken, login} from "../../services/authService";
 import {notifyShowToast} from "../../utils/showToast";
 
-/** Компонент страницы входа в админку
- * @returns {JSX.Element} - Компонент страницы входа в админку.
- * */
+/** Компонент страницы входа в админку */
 const PageAdminCRMLogin = () => {
     const router = useRouter();
     const [fields, setFields] = useState({name: "", password: ""});

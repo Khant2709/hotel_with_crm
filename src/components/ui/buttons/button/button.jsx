@@ -22,7 +22,7 @@ const Button = ({text, hotel, disabled, handleClick}) => {
 
     const buttonStyle = {
         background: `${mainColorHotel[hotel]}`,
-        border: isHover ? `4px solid ${colorHoverBtn[hotel]}` : 'none',
+        border: isHover && `4px solid ${colorHoverBtn[hotel]}`,
     }
 
     return (

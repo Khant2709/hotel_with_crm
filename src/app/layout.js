@@ -36,6 +36,11 @@ export const metadata = {
         telephone: false, // Отключение автоматического форматирования телефонных номеров
     },
     lang: "ru",
+    openGraph: {
+        site_name: "Апартаменты Сан Марина",
+        determiner: "the",
+        locale: "ru_RU",
+    },
     icons: {
         // Основная иконка сайта (favicon), отображается во вкладке браузера
         icon: [
@@ -96,26 +101,9 @@ export const metadata = {
 };
 
 export default function RootLayout({children}) {
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "Hotel",
-        name: "Апартаменты Сан Марина",
-        logo: "https://sanmarinosochi.ru/favicon180.png",
-        contactPoint: {
-            "@type": "ContactPoint",
-            telephone: "+7 (991) 416-26-38",
-            email: "resortegorova@gmail.com",
-            contactType: "бронирование номеров и обслуживание клиентов",
-        }
-    };
-
     return (
         <html lang="ru">
         <body className={inter.className}>
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
-        />
         <WindowWidthProvider>
             <PreloaderProvider>
                 <PopUpProvider>

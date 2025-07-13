@@ -1,34 +1,45 @@
 import React from 'react';
+import Image from "next/image";
+
+import toggleIcon from '../../../../public/admin/toggleNav.png';
+import logoutIcon from '../../../../public/admin/logout.png';
 
 import styles from './navbarAdmin.module.css';
 import stylesFontT from "../../../styles/fonts/timesNewRoman.module.css";
 
-/**
- * Компонент для отображения ссылок на разделы сайта.
- * @param {Object} props - Пропсы компонента.
- * @param {array} props.navbarAdmin - Список меню навигации.
- * @param {string} props.currentPath - Текущий путь.
- * @param {function} props.changePageAdmin - Обработчик для перехода по страницам админки.
- * @param {function} props.logout - Виход из админки в меню авторизации.
- * @returns {JSX.Element} - Список ссылок страниц.
- */
-const ContentDesktop = ({navbarAdmin, currentPath, changePageAdmin, logout}) => (
-    <div className={`${stylesFontT.newRoman400} ${styles.containerLayout}`}>
-        <div className={styles.containerNavbar}>
-            {navbarAdmin.map(el => {
-                const activePage = currentPath === el.link;
-                return (
-                    <p key={el.id}
-                       className={`${styles.elNavbar} ${activePage && styles.activePage}`}
-                       onClick={() => changePageAdmin(`/admincrm${el.link}`)}
-                    >
-                        {el.textRu}
-                    </p>
-                );
-            })}
-        </div>
-        <p onClick={logout}>Выход</p>
+
+/** Компонент для отображения ссылок на разделы сайта. */
+const ContentDesktop = ({navbarAdmin, currentPath, changePageAdmin, logout, width, handleToggleNav, isHiddenNav}) => (
+    <div className={`${stylesFontT.newRoman400} ${styles.containerLayout} ${isHiddenNav ? styles.hiddenNav : ''}`}>
+      {navbarAdmin.map(el => {
+        const pathSplit = el.link.split('/');
+        const activePage = currentPath === ((pathSplit[1] === 'hotel' || pathSplit[1] === 'booking')
+            ? `${pathSplit[1]}/${pathSplit[2]}`
+            : pathSplit[1]);
+        return <ContainerNav
+            key={el.id}
+            text={el.textRu}
+            icon={el.icon}
+            handleClick={() => changePageAdmin(`/admincrm${el.link}`)}
+            isActive={activePage}
+            isHiddenNav={isHiddenNav}
+        />
+      })}
+      <ContainerNav text={'Выход'} icon={logoutIcon} handleClick={logout} isHiddenNav={isHiddenNav}/>
+      {width > 768 && <Image
+          onClick={handleToggleNav}
+          src={toggleIcon}
+          alt={'toggle'}
+          className={`${styles.toggleBar} ${styles.icon}`}
+      />}
     </div>
 );
 
 export default ContentDesktop;
+
+const ContainerNav = ({text, icon, handleClick, isActive, isHiddenNav}) => (
+    <div onClick={handleClick} className={`${styles.containerNavEl} ${isActive ? styles.activePage : ''}`}>
+      <Image src={icon} alt={text} className={styles.icon}/>
+      {!isHiddenNav && <p>{text}</p>}
+    </div>
+)

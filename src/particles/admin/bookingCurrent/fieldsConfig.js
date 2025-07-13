@@ -29,31 +29,36 @@ export const fieldsConfig = [
         validation: (email) => validateEmail(email),
         group: 'guest_info'
     }),
+    createField({
+        label: 'Комментарий:',
+        typeField: 'textarea',
+        name: 'comments',
+        placeholder: 'Комментарий',
+        group: 'guest_info'
+    }),
 
     createField({
         label: 'Отель:',
-        // typeField: 'select',
+        typeField: 'select',
         name: 'hotel_id',
-        // optionValue: '',
         group: 'booking_info'
     }),
     createField({
         label: 'Апартаменты:',
-        // typeField: 'select',
+        typeField: 'select',
         name: 'apartment_id',
-        // optionValue: '',
         group: 'booking_info'
     }),
     createField({
         label: 'Заезд:',
-        // typeField: 'input',
+        typeField: 'input',
         type: 'date',
         name: 'start_date_local',
         group: 'booking_info'
     }),
     createField({
         label: 'Выезд:',
-        // typeField: 'input',
+        typeField: 'input',
         type: 'date',
         name: 'end_date_local',
         group: 'booking_info'
@@ -104,5 +109,12 @@ export const fieldsConfig = [
         type: 'date',
         name: 'reservationTimestamp',
         group: 'admin_info'
-    })
+    }),
+    createField({
+        label: 'Оповестить гостя:',
+        typeField: 'select',
+        name: 'sendToGuest',
+        value: "1",
+        group: 'admin_info'
+    }),
 ];

@@ -15,25 +15,22 @@ import {useWindowWidth} from "../../hooks/UseWidth";
 
 import styles from "./wrapperMainPage.module.css";
 
-const WrapperMainPage = ({ssrData}) => {
+const WrapperMainPage = ({banner, territoryImages, allHotels, faq}) => {
     const width = useWindowWidth();
-
-    const hotels = ssrData.hotelsData;
-
     if (!width) {
         return <Preloader/>
     }
 
     return (
         <main className={styles.main}>
-            <WrapperBanner hotels={hotels} width={width}/>
+            <WrapperBanner hotels={allHotels} width={width} banner={banner}/>
             <div className={styles.wrapperForm}>
                 <FormSearchDate/>
             </div>
-            <ContentHotelInfo hotels={hotels} width={width}/>
+            <ContentHotelInfo hotels={allHotels} width={width}/>
             <ContentConveniences/>
-            <ComponentImages width={width}/>
-            <WrapperFaq ssrData={{faqData: ssrData.faqData}} hasSlice={true}/>
+            <ComponentImages width={width} territoryImages={territoryImages}/>
+            {/*<WrapperFaq faq={faq} hasSlice={true}/>*/}
         </main>
     );
 };

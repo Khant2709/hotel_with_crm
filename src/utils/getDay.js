@@ -29,6 +29,21 @@ export const getNextDay = () => {
     return formatDate(nextDay);
 };
 
+export const getPeriodWork = () => {
+    const today = new Date();
+    const month = today.getMonth();
+
+    // Если месяц больше месяца конца сезона
+    const year = month < 10 ? today.getFullYear() : today.getFullYear() + 1;
+    const startDatePeriod = PERIODS_MONTH_DAY.firstPeriod.startDate;
+    const endDatePeriod = PERIODS_MONTH_DAY.fourthPeriod.endDate;
+
+    return {
+        startSeason: formatDate(new Date(`${year}-${startDatePeriod}`)),
+        endSeason: formatDate(new Date(`${year}-${endDatePeriod}`))
+    }
+}
+
 /**
  * Возвращает даты заезда и выезда на основе начала сезона.
  * @returns {{ checkInDate: string, checkOutDate: string }} Даты заезда и выезда.

@@ -4,31 +4,35 @@ import HeaderLine from "../../components/ui/headerLine/headerLine";
 import WrapperFaq from "../../components/ui/componentFaq/wrapperFaq/wrapperFaq";
 import ErrorResponseData from "../../components/ui/error/errorResponseData/errorResponseData";
 
-import {getDataToPage} from "../../particles/pageFAQ/getDataToPage";
+import {singleRequest} from "../../services/utils/requestUtils";
+import {faqAPI} from "../../services/api";
 
 import {metaDataQuestionPage} from "../../data/metaData";
 import {jsonLDQuestionPage} from "../../data/seoData";
+import {TIME_CASH} from "../../config/envData";
 
-/** Мета данные страницы faq */
 export const metadata = metaDataQuestionPage;
 
-/** Основной (серверный компонент) страницы faq
- * @returns {JSX.Element} - Компонент обернтку страницы faq.
- * */
-export default async function QuestionsPage() {
-    const {faqData} = await getDataToPage();
-    const checkFaqData = faqData && faqData.status === 200 && faqData.data.length > 0;
 
-    if (!checkFaqData) {
+/** Основной (серверный компонент) страницы faq */
+async function fetchData() {
+    return await singleRequest(() => faqAPI.getFAQ(null, null, TIME_CASH["60min"]));
+}
+
+export default async function QuestionsPage() {
+    const {data, error} = await fetchData();
+
+    if (error) {
         return <ErrorResponseData
             hasHeaderLine={true}
             page={"FAQ"}
-            error={faqData}
+            error={error}
             text={"Произошла ошибка, не уалось загрузить информацию."}
         />
     }
 
-    const jsonData = jsonLDQuestionPage(faqData?.data || []);
+    const faq = data?.data;
+    const jsonData = jsonLDQuestionPage(faq);
 
     return (
         <>
@@ -37,8 +41,10 @@ export default async function QuestionsPage() {
             />
             <div style={{minHeight: '60vh'}}>
                 <HeaderLine/>
-                <WrapperFaq ssrData={{faqData: faqData.data}} hasSlice={false}/>
+                <WrapperFaq faq={faq} hasSlice={false}/>
             </div>
         </>
     );
 }
+
+export const revalidate = TIME_CASH["60min"] / 1000;

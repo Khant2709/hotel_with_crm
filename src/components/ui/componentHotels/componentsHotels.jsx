@@ -12,14 +12,7 @@ import styles from "./componentsHotels.module.css";
 import stylesFontsT from "../../../styles/fonts/timesNewRoman.module.css";
 
 
-/**
- * Компонент для отображения основных отелей с возможностью перехода на них.
- * @param {Object} props - Пропсы компонента.
- * @param {Array} props.allHotel - Список отелей.
- * @param {function} props.redirectToHotel - Функция для перехода на отель.
- * @param {number} props.width - Ширина экрана.
- * @returns {JSX.Element} - Компонент для отображения основных отелей.
- */
+/** Компонент для отображения основных отелей с возможностью перехода на них.*/
 const ComponentsHotels = ({allHotel, redirectToHotel, width}) => (
     <section className={styles.main}>
         {allHotel.map((hotel, i) => {
@@ -47,14 +40,7 @@ const ComponentsHotels = ({allHotel, redirectToHotel, width}) => (
 
 export default React.memo(ComponentsHotels);
 
-/**
- * Компонент отображения отеля (десктоп версия).
- * @param {Object} props - Пропсы компонента.
- * @param {Object} props.hotel - Обьект с данными отеля.
- * @param {function} props.redirectToHotel - Функция для перехода на отель.
- * @param {string} props.hotelLogoStyle - Стиль логотипа.
- * @returns {JSX.Element} - Компонент отображения отеля.
- */
+/** Компонент отображения отеля (десктоп версия).*/
 const DesktopContent = ({i, hotel, redirectToHotel, hotelLogoStyle}) => (
     <>
         {
@@ -72,13 +58,7 @@ const DesktopContent = ({i, hotel, redirectToHotel, hotelLogoStyle}) => (
 );
 
 
-/**
- * Компонент отображения отеля (мобильная версия).
- * @param {Object} props - Пропсы компонента.
- * @param {Object} props.hotel - Обьект с данными отеля.
- * @param {function} props.redirectToHotel - Функция для перехода на отель.
- * @returns {JSX.Element} - Компонент отображения отеля.
- */
+/** Компонент отображения отеля (мобильная версия).*/
 const MobileContent = ({hotel, redirectToHotel}) => (
     <div className={`${stylesFontsT.newRoman400} ${styles.informationContainerHotel}`}>
         <p className={styles.nameHotel}
@@ -97,13 +77,7 @@ const MobileContent = ({hotel, redirectToHotel}) => (
     </div>
 );
 
-/**
- * Компонент отображающий информацию отеля.
- * @param {Object} props - Пропсы компонента.
- * @param {Object} props.hotel - Обьект с данными отеля.
- * @param {function} props.redirectToHotel - Функция для перехода на отель.
- * @returns {JSX.Element} - Информационный компонент отеля.
- */
+/** Компонент отображающий информацию отеля.*/
 const HotelInfo = React.memo(({hotel, redirectToHotel}) => (
     <div className={`${stylesFontsT.newRoman400} ${styles.informationContainerHotel}`}>
         <p className={styles.nameHotel} style={{color: `${mainColorHotel[hotel.type]}`}}>
@@ -116,13 +90,7 @@ const HotelInfo = React.memo(({hotel, redirectToHotel}) => (
 HotelInfo.displayName = "HotelInfo";
 
 
-/**
- * Компонент кнопок для перехода на отель.
- * @param {Object} props - Пропсы компонента.
- * @param {Object} props.hotel - Обьект с данными отеля.
- * @param {function} props.redirectToHotel - Функция для перехода на отель.
- * @returns {JSX.Element} - Компонент кнопок.
- */
+/** Компонент кнопок для перехода на отель. */
 const HotelButtons = React.memo(({hotel, redirectToHotel}) => (
     <div className={styles.wrapperBtn}>
         <Button text={"Номера"}

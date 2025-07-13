@@ -1,0 +1,125 @@
+import {validateEmail, validateName, validatePhone} from "../../../utils/validate/validateFields";
+import {createField} from "../../../components/ui/fields/createField";
+
+export const fieldsConfig = [
+    createField({
+        label: 'ФИО гостя:',
+        typeField: 'input',
+        type: 'text',
+        name: 'guest_fio',
+        placeholder: 'Введите фио гостя',
+        validation: (name) => validateName(name),
+        group: 'guest_info'
+    }),
+    createField({
+        label: 'Телефон:',
+        typeField: 'input',
+        type: 'tel',
+        name: 'guest_phone',
+        placeholder: 'Введите телефон гостя',
+        value: '79654656025',
+        validation: (phone) => validatePhone(phone),
+        group: 'guest_info'
+    }),
+    createField({
+        label: 'Почта:',
+        typeField: 'input',
+        type: 'email',
+        name: 'guest_email',
+        placeholder: 'Введите почту гостя',
+        value: 'Valeriya111@mail.ru',
+        validation: (email) => validateEmail(email),
+        group: 'guest_info'
+    }),
+    createField({
+        label: 'Комментарий:',
+        typeField: 'textarea',
+        name: 'comments',
+        placeholder: 'Комментарий',
+        group: 'guest_info'
+    }),
+
+    createField({
+        label: 'Отель:',
+        typeField: 'select',
+        name: 'hotel_id',
+        value: "1",
+        group: 'booking_info'
+    }),
+    createField({
+        label: 'Апартаменты:',
+        typeField: 'select',
+        name: 'apartment_id',
+        value: "5",
+        group: 'booking_info'
+    }),
+    createField({
+        label: 'Заезд:',
+        typeField: 'input',
+        type: 'date',
+        name: 'start_date',
+        group: 'booking_info'
+    }),
+    createField({
+        label: 'Выезд:',
+        typeField: 'input',
+        type: 'date',
+        name: 'end_date',
+        group: 'booking_info'
+    }),
+    createField({
+        label: 'Кол. взрослых:',
+        typeField: 'input',
+        type: 'number',
+        name: 'count_adults',
+        group: 'booking_info'
+    }),
+    createField({
+        label: 'Кол. детей:',
+        typeField: 'input',
+        type: 'number',
+        name: 'count_children',
+        value: '0',
+        group: 'booking_info'
+    }),
+
+    createField({
+        label: 'Итоговая сумма:',
+        typeField: 'input',
+        type: 'number',
+        name: 'total_price',
+        group: 'admin_info'
+    }),
+    createField({
+        label: 'Статус:',
+        name: 'status',
+        value: 'CONFIRM',
+        group: 'admin_info'
+    }),
+    createField({
+        label: 'Предопллата:',
+        typeField: 'input',
+        type: 'number',
+        name: 'prepayment',
+        group: 'admin_info'
+    }),
+    createField({
+        label: 'Администратор:',
+        type: 'text',
+        name: 'confirmedBy',
+        group: 'admin_info'
+    }),
+    createField({
+        label: 'Дата изменений:',
+        type: 'date',
+        name: 'reservationTimestamp',
+        group: 'admin_info'
+    }),
+    createField({
+        label: 'Оповестить гостя:',
+        typeField: 'select',
+        name: 'sendToGuest',
+        value: "0",
+        group: 'admin_info'
+    }),
+];

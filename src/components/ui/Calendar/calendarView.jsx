@@ -41,9 +41,9 @@ const CalendarView = ({
                 case "selected":
                     return isSelectedDate(currentDate, startDataReservation, endDataReservation);
                 case "verificationBookedDate":
-                    return isBookedDate(currentDate, filterBooking, 'Подтверждена');
+                    return isBookedDate(currentDate, filterBooking, 'CONFIRM');
                 case "noVerificationBookedDate":
-                    return isBookedDate(currentDate, filterBooking, 'Ожидает подтверждения');
+                    return isBookedDate(currentDate, filterBooking, 'WAITING');
                 case "reservationDate":
                     return isReservationDate(currentDate, startDataReservation, endDataReservation);
                 default:

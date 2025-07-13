@@ -1,0 +1,18 @@
+.containerError {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.errorText {
+  font-size: calc(20px + (24 - 20) * (100vw - 480px) / (1920 - 480));
+  font-weight: bold;
+  color: rgba(232, 95, 95, 0.8);
+}
+
+.text {
+  font-size: calc(16px + (22 - 16) * (100vw - 480px) / (1920 - 480));
+  opacity: 0.75;
+}

@@ -1,7 +1,7 @@
 import {
-    validateBookingDate,
-    validateCountPeopleReservation,
-    validateDataReservation
+  validateBookingDate,
+  validateCountPeopleReservation,
+  validateDataReservation
 } from "../../../utils/validate/vaidateFormReservation";
 import {filterBookingsFromApartment} from "../../../utils/filterBookings";
 import calculateTotalAndAverage from "../../../utils/calculateTotalAndAverage";
@@ -21,75 +21,75 @@ import {getToday} from "../../../utils/getDay";
  * @param {function} setErrorReservation - обработчик ошибок
  * */
 export const validFieldAndGetPrice = ({
-                                          startDate,
-                                          endDate,
-                                          dataPeople,
-                                          currentApartment,
-                                          allBookings,
-                                          allApartments,
-                                          dataPrice,
-                                          errorReservation,
-                                          setDataPrice,
-                                          setErrorReservation
+                                        startDate,
+                                        endDate,
+                                        dataPeople,
+                                        currentApartment,
+                                        allBookings,
+                                        allApartments,
+                                        dataPrice,
+                                        errorReservation,
+                                        setDataPrice,
+                                        setErrorReservation
                                       }) => {
-    const today = new Date(getToday()).getTime();
-    const error = [];
+  const today = new Date(getToday()).getTime();
+  const error = [];
 
-    const resultValidDate = validateDataReservation({
-        today,
-        startDate: startDate.getTime(),
-        endDate: endDate.getTime(),
-    });
-    if (resultValidDate.error) error.push(resultValidDate.text);
+  const resultValidDate = validateDataReservation({
+    today,
+    startDate: startDate.getTime(),
+    endDate: endDate.getTime(),
+  });
+  if (resultValidDate.error) error.push(resultValidDate.text);
 
-    const resultValidCountPeople = validateCountPeopleReservation({
-        countPeople:
-            +dataPeople.countAdults + +dataPeople.countChildren,
-        limitPeople: currentApartment.person_max,
-        setErrorReservation,
-    });
-    if (resultValidCountPeople.error) error.push(resultValidCountPeople.text);
+  const resultValidCountPeople = validateCountPeopleReservation({
+    countPeople:
+        +dataPeople.countAdults + +dataPeople.countChildren,
+    limitPeople: currentApartment.person_max,
+    setErrorReservation,
+  });
+  if (resultValidCountPeople.error) error.push(resultValidCountPeople.text);
 
-    const filterBooking = filterBookingsFromApartment({
-        allBookings,
-        allApartments,
-        apartment: currentApartment,
-    });
+  const filterBooking = filterBookingsFromApartment({
+    allBookings,
+    allApartments,
+    apartment: currentApartment,
+  });
 
-    const checkReservationDate = validateBookingDate({
-        filterBooking,
-        startDate,
-        endDate,
-    });
-    if (checkReservationDate.error) error.push(checkReservationDate.text);
+  const checkReservationDate = validateBookingDate({
+    filterBooking,
+    startDate,
+    endDate,
+  });
+  if (checkReservationDate.error) error.push(checkReservationDate.text);
 
-    const {
-        averageSumPerDay,
-        totalSum,
-        totalDays,
-        error: errorCalculate,
-        text: textCalculate,
-    } = calculateTotalAndAverage({
-        startReservation: startDate.getTime(),
-        endReservation: endDate.getTime(),
-        priceArray: Object.values(currentApartment.prices),
-    });
-    if (errorCalculate) error.push(textCalculate);
+  const {
+    averageSumPerDay,
+    totalSum,
+    totalDays,
+    error: errorCalculate,
+    text: textCalculate,
+  } = calculateTotalAndAverage({
+    startReservation: startDate.getTime(),
+    endReservation: endDate.getTime(),
+    priceArray: Object.values(currentApartment.prices),
+  });
+  if (errorCalculate) error.push(textCalculate);
 
-    if (
-        dataPrice.averageSumPerDay !== averageSumPerDay ||
-        dataPrice.totalSum !== totalSum ||
-        dataPrice.totalDays !== totalDays
-    ) {
-        setDataPrice({averageSumPerDay, totalSum, totalDays});
-    }
+  if (
+      dataPrice.averageSumPerDay !== averageSumPerDay ||
+      dataPrice.totalSum !== totalSum ||
+      dataPrice.totalDays !== totalDays
+  ) {
+    setDataPrice({averageSumPerDay, totalSum, totalDays});
+  }
 
-    if (
-        error.length > 0 &&
-        JSON.stringify(error) !== JSON.stringify(errorReservation)
-    ) {
-        setErrorReservation(error);
-    } else if (error.length === 0 && errorReservation !== null) {
-        setErrorReservation(null);
-    }
+  if (
+      error.length > 0 &&
+      JSON.stringify(error) !== JSON.stringify(errorReservation)
+  ) {
+    setErrorReservation(error);
+  } else if (error.length === 0 && errorReservation !== null) {
+    setErrorReservation(null);
+  }
 }

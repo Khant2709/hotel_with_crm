@@ -24,7 +24,6 @@ const WrapperCalendar = ({
                          }) => {
     const filterBooking = useMemo(() => filterBookingsFromApartment({
         allBookings,
-        allApartments,
         apartment: currentApartment,
     }), [allBookings, allApartments, currentApartment]);
 

@@ -58,7 +58,6 @@ const HotelsAndApartmentsProvider = ({children}) => {
                 !data.apartments ||
                 (data.lastFetched + oneHour < Date.now())
             ) {
-                console.log('Произошло обновление данных отелей и номеров')
                 fetchHotelsAndApartments(setData);
                 setIsNeedUpdate(false);
             }

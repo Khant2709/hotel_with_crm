@@ -1,9 +1,5 @@
 /**
  * Обрабатывает изменение значения поля ввода.
- * @param {Event} e - Событие изменения поля.
- * @param {string} type - Тип поля ('file' или другой).
- * @param {Array} fields - Массив полей.
- * @param {Function} setFields - Функция для обновления состояния полей.
  */
 export const handleFieldsChange = (e, type = 'text', fields, setFields) => {
     const {name, value, files} = e.target;

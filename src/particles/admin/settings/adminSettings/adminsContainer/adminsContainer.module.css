@@ -1,0 +1,22 @@
+.wrapperAdmins {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.containerAdmin {
+  font-size: calc(18px + (24 - 18) * (100vw - 480px) / (1920 - 480));
+
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.containerAdmin img {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}

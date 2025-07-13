@@ -9,9 +9,14 @@
     gap: 2rem;
 }
 
-.wrapperLogin p {
+.wrapperLogin p, .wrapperLogin q {
     font-size: calc(20px + (24 - 20) * (100vw - 480px) / (1920 - 480));
     opacity: 0.7;
+}
+
+.wrapperLogin q {
+    font-style: italic;
+    letter-spacing: 2px;
 }
 
 .wrapperLogin input, .filterContainer input {

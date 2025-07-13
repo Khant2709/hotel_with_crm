@@ -1,24 +1,39 @@
 import React from "react";
 
 import WrapperAllHotelsApartments from "../../particles/pageReservation/wrapperAllHotelsApartments";
-import {getInitialHotelData} from "../../particles/pageReservation/getDataToPage";
 import ErrorResponseData from "../../components/ui/error/errorResponseData/errorResponseData";
+
+import {hotelsAPI, apartmentsAPI} from "../../services/api";
+import {batchRequest} from "../../services/utils/requestUtils";
 
 import {metaDataReservationAllPage} from "../../data/metaData";
 import {jsonLDReservationAllPage} from "../../data/seoData";
+import {TIME_CASH} from "../../config/envData";
 
-/** Мета данные страницы контактов */
+
 export const metadata = metaDataReservationAllPage;
 
-/** Основной (серверный компонент) страницы всех отелей и их номеров.
- * @returns {JSX.Element} - Компонент страницы всех отелей и их номеров.
- * */
+
+async function fetchData() {
+    const data = {
+        hotelsData: null,
+        apartmentsData: null,
+    };
+
+    const request = [
+        () => hotelsAPI.getMainHotelsData(TIME_CASH["60min"]),
+        () => apartmentsAPI.getAllApartments(TIME_CASH["60min"])
+    ];
+
+    return await batchRequest(data, request);
+}
+
+
+/** Основной (серверный компонент) страницы всех отелей и их номеров. */
 export default async function pageAllHotelsApartments() {
-    const {hotelsData, apartmentsData} = await getInitialHotelData();
+    const {hotelsData, apartmentsData} = await fetchData();
 
-    const isDataValid = (data) => data && data.status === 200 && data.data.length > 0;
-
-    if (!isDataValid(hotelsData) || !isDataValid(apartmentsData)) {
+    if (hotelsData.status !== 200 || apartmentsData.status !== 200) {
         return <ErrorResponseData
             hasHeaderLine={true}
             page={"Reservation"}
@@ -27,16 +42,19 @@ export default async function pageAllHotelsApartments() {
         />
     }
 
+    const hotels = hotelsData.data.data;
+    const apartments = apartmentsData.data.data;
+    const jsonLD = jsonLDReservationAllPage(apartments)
+
     return (
         <section>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(jsonLDReservationAllPage),
-                }}
+                dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLD)}}
             />
-            <WrapperAllHotelsApartments allHotels={hotelsData?.data} allApartments={apartmentsData.data}/>
+            <WrapperAllHotelsApartments allHotels={hotels} allApartments={apartments}/>
         </section>
     );
 };
 
+export const revalidate = TIME_CASH["60min"] / 1000;

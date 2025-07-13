@@ -8,14 +8,10 @@ import ContentMobile from "./contentMobile/contentMobile";
 import {HOTELS_NAME_AND_LINK} from "../../../config/envData";
 
 import styles from './wrapperBanner.module.css';
+import {getFullPathImage} from "../../../utils/getFullPathImage";
 
-/** Компонент обертка для компонента банера на главной страницы
- * @param {object} props - Пропсы компонента.
- * @param {array} props.hotels - Список отелей.
- * @param {number} props.width - Ширина экрана.
- * @returns {JSX.Element} - Компонент банера главной страницы.
- * */
-const WrapperBanner = ({hotels, width}) => {
+/** Компонент обертка для компонента банера на главной страницы */
+const WrapperBanner = ({banner, hotels, width}) => {
     const [hoveredHotel, setHoveredHotel] = useState(null);
 
     const hotelsData = useMemo(() => hotels.reduce(
@@ -42,11 +38,14 @@ const WrapperBanner = ({hotels, width}) => {
     }, [hoveredHotel]);
 
     return (
-        <div className={styles.main}>
+        <div className={styles.main}
+             style={{backgroundImage: `url(${getFullPathImage(banner.image_path, banner.image_name)})`}}
+        >
             {width > 480
-                ? <ContentDesktop hotelsData={hotelsData}
-                                  hoveredHotel={hoveredHotel}
-                                  changeState={toggleStateContainerHotel}
+                ? <ContentDesktop
+                    hotelsData={hotelsData}
+                    hoveredHotel={hoveredHotel}
+                    changeState={toggleStateContainerHotel}
                 />
                 : <ContentMobile obile hotels={hotelsData}/>
             }

@@ -16,12 +16,12 @@ import styles from "./WindowWarningOutofSession.module.css";
  * Компонент для отображения контактов.
  * @param {Object} props - Пропсы компонента.
  * @param {function} props.handleClose - Обработчик закрытия окна.
- * @param {string} props.checkInDate - Дата начала сезона.
- * @param {string} props.checkOutDate - Дата конца сезона.
+ * @param {string} props.startSeason - Дата начала сезона.
+ * @param {string} props.endSeason - Дата конца сезона.
  * @param {function} props.handleViewRooms - Обработчик перехода на страницу номеров.
  * @returns {JSX.Element} - Блок контактов.
  */
-const ContentWindow = ({handleClose, checkInDate, checkOutDate, handleViewRooms}) => {
+const ContentWindow = ({handleClose, startSeason, endSeason, handleViewRooms}) => {
     return (
         <div className={styles.wrapperWindow} onClick={handleClose}>
             <div className={`${stylesFontT.newRoman400} ${styles.containerContent}`}
@@ -35,8 +35,8 @@ const ContentWindow = ({handleClose, checkInDate, checkOutDate, handleViewRooms}
                 />
                 <p className={styles.description}>
                     Наш отель работает в период с{" "}
-                    <span>{transformDateFormat(checkInDate)}</span> по{" "}
-                    <span>{transformDateFormat(checkOutDate)}</span>. Вы можете
+                    <span>{transformDateFormat(startSeason)}</span> по{" "}
+                    <span>{transformDateFormat(endSeason)}</span>. Вы можете
                     ознакомиться с сайтом или забронировать номер на сезон.
                 </p>
                 <div className={styles.containerButtons}>

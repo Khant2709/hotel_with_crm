@@ -7,7 +7,6 @@ const UsePreloaderAdminContext = React.createContext();
 const PreloaderAdminProvider = ({children}) => {
     const [toggleStatePreloader, setToggleStatePreloader] = useState(true);
 
-
     const statePreloaderValue = {
         toggleStatePreloader,
         setToggleStatePreloader

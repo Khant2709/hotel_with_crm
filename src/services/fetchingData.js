@@ -31,25 +31,3 @@ export const fetchingBookingData = async (type, date = null) => {
         throw error;
     }
 };
-
-/** Функция для получения данных статей
- * @param {string || null} id - выбранная дата (если применимо)
- * @returns {Promise<Array>} - массив данных статей
- */
-export const fetchingArticleData = async (id = null) => {
-    try {
-        const response = id
-            ? await articles.getCurrentArticle(id)
-            : await articles.getAllArticles()
-
-        if (response?.status >= 200 && response?.status < 300) {
-            console.log(response)
-            return response?.data?.data;
-        } else {
-            throw new Error(response?.response?.errorText || 'Ошибка при получении данных броней.');
-        }
-    } catch (error) {
-        console.error(`! Ошибка в fetchingArticleData: ${error.message}`);
-        throw error;
-    }
-}

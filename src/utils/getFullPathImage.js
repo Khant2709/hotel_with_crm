@@ -7,8 +7,8 @@ import { BASE_URL_IMAGES } from "../config/envData";
  */
 export const getFullPathImage = (imageLink, imageName) => {
   if (!imageLink || !imageName) {
+    return null
     throw new Error('imageLink и imageName обязательны для формирования полного пути.');
   }
-
-  return `${BASE_URL_IMAGES}/${imageLink}/${imageName}`;
+  return `${BASE_URL_IMAGES}${imageLink}/${imageName}`;
 };

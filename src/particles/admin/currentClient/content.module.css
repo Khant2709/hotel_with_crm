@@ -1,0 +1,47 @@
+.containerClientData {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.rowClientData {
+    font-size: calc(14px + (22 - 14) * (100vw - 480px) / (1920 - 480));
+
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.rowClientData p:last-child {
+    text-align: right;
+}
+
+.eventCard {
+    padding: 1rem;
+    border-radius: 8px;
+    border: 3px solid rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.eventWaiting {
+    border-color: rgba(0, 0, 0, 0.5);
+}
+
+.eventConfirm {
+    border-color: rgba(127, 255, 138, 0.75);
+}
+
+.eventCompleted {
+    border-color: rgba(79, 70, 229, 0.75);
+}
+
+.eventCancelled {
+    border-color: rgba(253, 127, 127, 0.5);
+}
+
+.eventRemoved {
+    border-color: rgba(255, 0, 0, 0.95);
+}

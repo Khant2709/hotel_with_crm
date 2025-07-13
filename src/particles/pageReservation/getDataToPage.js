@@ -1,22 +1,6 @@
-import {hotels, apartments, booking} from "../../services/api";
-import allRequest from "../../utils/allRequest";
-
-/** Функция (начальная) для получения данных для страницы отелей
- * @return {object} - возвращает обьект с данными{hotelsData, bannerData}
- * */
-export const getInitialHotelData = async () => {
-    const data = {
-        hotelsData: null,
-        apartmentsData: null
-    };
-
-    const request = [
-        () => hotels.getMainHotelsData(),
-        () => apartments.getAllApartments(),
-    ];
-
-    return await allRequest(data, request);
-};
+import {apartmentsAPI, bookingAPI} from "../../services/api";
+import {singleRequest} from "../../services/utils/requestUtils";
+import {TIME_CASH} from "../../config/envData";
 
 /** Функция для получения данных для страницы отелей (с фильтрацией)
  * @param {object} searchParams - Опциональний параметр, если есть получаем обьект {searchStartReservation, searchEndReservation, countPeopleReservation}
@@ -32,9 +16,9 @@ export const getApartmentsData = async (searchParams) => {
                 endReservation: searchParams?.endDateReservation,
                 countPeopleReservation: searchParams?.countPeopleReservation,
             }
-            result = await booking.getFilterBooking({...params})
+            result = await singleRequest(() => bookingAPI.getFilterBooking({...params, cacheAge: TIME_CASH["5min"]}))
         } else {
-            result = await apartments.getAllApartments();
+            result = await singleRequest(() => apartmentsAPI.getAllApartments(TIME_CASH["60min"]));
         }
         return {apartmentsData: result.data.data, status: result.status}
     } catch (err) {

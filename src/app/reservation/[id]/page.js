@@ -1,14 +1,15 @@
 import React from "react";
 
 import WrapperCurrentReservation from "../../../particles/reservationCurrentRoom/wrapperCurrentReservation";
-import {getDataToPage} from "../../../particles/reservationCurrentRoom/getDataToPage";
 
 import ErrorResponseData from "../../../components/ui/error/errorResponseData/errorResponseData";
 
-import {HOTELS_NAME_AND_LINK} from "../../../config/envData";
+import {HOTEL_TYPE, HOTELS_NAME_AND_LINK, TIME_CASH} from "../../../config/envData";
 
 import {jsonLDCurrentRoom} from "../../../data/seoData";
 import {metaDataCurrentRoom} from "../../../data/metaData";
+import {batchRequest, singleRequest} from "../../../services/utils/requestUtils";
+import {apartmentsAPI, bookingAPI} from '../../../services/api';
 
 /** Функция нахождения конкретного отеля */
 const getHotelById = (id) => {
@@ -17,36 +18,54 @@ const getHotelById = (id) => {
 
 /** Мета данные страницы брони конкретного номера. */
 export async function generateMetadata({params: {id}}) {
-    const {currentApartmentData} = await getDataToPage(id, 'meta');
-    const currentApartment = currentApartmentData?.data[0];
-    const currentHotel = getHotelById(currentApartment?.hotel_id);
+    const apartmentData = await singleRequest(() => apartmentsAPI.getCurrentApartment(id, TIME_CASH["60min"]))
+    if (apartmentData.status !== 200) return null;
+
+    const currentApartment = apartmentData.data.data[0];
+    const currentHotel = getHotelById(currentApartment.hotel_id);
     return metaDataCurrentRoom(id, currentHotel, currentApartment);
 }
 
-/** Основной (серверный компонент) страницы брони конкретного номера.
- * @returns {JSX.Element} - Компонент страницы брони конкретного номера.
- * */
-export default async function Page({params: {id}}) {
-    const {apartmentsData, currentApartmentData, bookingsData} = await getDataToPage(id, 'initial');
-
-    const isResponseValid = (response, isObject = false) => {
-        return response?.status === 200 && (isObject ? response.data[0]?.id : response.data.length > 0);
+async function getData(id) {
+    const data = {
+        apartmentData: null,
+        allApartmentsData: null,
+        bookingsData: null,
     };
 
-    if (!isResponseValid(apartmentsData) || !isResponseValid(currentApartmentData, true)) {
-        return <ErrorResponseData
-            hasHeaderLine={true}
-            page={"CurrentReservation"}
-            error={[apartmentsData, currentApartmentData]}
-            text={"Произошла ошибка, не уалось загрузить информацию."}
-        />
-    }
+    const request = [
+        () => apartmentsAPI.getCurrentApartment(id, TIME_CASH["60min"]),
+        () => apartmentsAPI.getAllApartments(TIME_CASH["60min"]),
+        () => bookingAPI.getAllBookings(TIME_CASH["5min"]),
+    ];
 
-    const apartment = currentApartmentData.data[0];
+    return await batchRequest(data, request);
+}
+
+/** Основной (серверный компонент) страницы брони конкретного номера. */
+export default async function Page({params: {id}}) {
+    const {apartmentData, allApartmentsData, bookingsData} = await getData(id);
+
+    if (apartmentData.status !== 200 ||
+        allApartmentsData.status !== 200 ||
+        bookingsData.status >= 300
+    ) {
+        return (
+            <ErrorResponseData
+                hasHeaderLine={true}
+                page={'CURRENT_APARTMENT'}
+                text={"Произошла ошибка, не уалось загрузить статьи."}
+                error={apartmentData?.error || allApartmentsData?.error || bookingsData?.error || 'Произошла ошибка при загрузке данных отеля. =('}
+            />
+        );
+    }
+    const apartment = apartmentData.data.data[0];
+    const allApartments = allApartmentsData.data.data;
+    const bookings = bookingsData.data.data;
     const currentHotel = getHotelById(apartment.hotel_id);
 
     const jsonLd = jsonLDCurrentRoom({
-        room: apartment,
+        room: apartmentData,
         hotelData: currentHotel
     });
 
@@ -56,12 +75,14 @@ export default async function Page({params: {id}}) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
             />
-            <WrapperCurrentReservation id={id}
-                                       currentHotel={currentHotel}
-                                       currentApartment={apartment}
-                                       allApartments={apartmentsData.data}
-                                       allBookings={bookingsData.data}
+            <WrapperCurrentReservation
+                id={id}
+                ssrData={{currentHotel, allApartments, apartment}}
+                hotelNumber={HOTEL_TYPE}
+                allBookings={bookings}
             />
         </section>
     );
 }
+
+export const revalidate = TIME_CASH["60min"] / 1000;

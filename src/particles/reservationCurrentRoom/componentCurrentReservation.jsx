@@ -14,29 +14,20 @@ import WrapperAnaloguesApartment from "./componentAnaloguesApartment/wrapper";
 import styles from "./componentCurrentReservation.module.css";
 
 
-/** Компонент страницы для бронирования конкретного номера
- * @param {object} props - Пропсы компонента.
- * @param {number} props.width - Ширина экрана.
- * @param {string} props.searchParams - QUERY Параметры дат и кол. чел.
- * @param {object} props.hotel - Данные отеля.
- * @param {array} props.hotel - Список всех номеров.
- * @param {function} props.setDataReservation - Обработчик изменения дат для брони.
- * @param {Object} props.dataReservation - Данные дат брони {startDataReservation, endDataReservation}.
- * @param {Object} props.countOfResidents - Колличество проживающих {countAdults, countChildren}.
- * @param {function} props.changeDataFromCalendar - Обработчик на изменение дат в календаре.
- * @return {JSX.Element} - Компонент страницы для бронирования конкретного номера.
- * */
+/** Компонент страницы для бронирования конкретного номера */
 const ComponentCurrentReservation = ({
                                          width,
                                          searchParams,
                                          hotel,
+                                         hotelNumber,
                                          apartment,
-                                         allApartments,
-                                         bookings,
-                                         setDataReservation,
                                          dataReservation,
-                                         countOfResidents,
-                                         changeDataFromCalendar
+                                         setDataReservation,
+                                         searchCountAdultsReservation,
+                                         searchCountChildrenReservation,
+                                         bookings,
+                                         allApartments,
+                                         changeDataFromCalendar,
                                      }) => {
     return (
         <div className={styles.main}>
@@ -51,9 +42,9 @@ const ComponentCurrentReservation = ({
             <div className={styles.wrapperMain}>
                 <TitleWithLine
                     text={hotel.name}
-                    hotelType={hotel.type}
-                    showTopLine={true}
-                    showHotelPrefix={true}
+                    hotel={hotelNumber}
+                    hasTopLine={true}
+                    hasNameHotel={true}
                 />
 
                 <ComponentContainerPhotos width={width} photosApartment={apartment.images}/>
@@ -63,13 +54,13 @@ const ComponentCurrentReservation = ({
                 <WrapperFormReservation
                     setDataReservation={setDataReservation}
                     dataReservation={dataReservation}
-                    countAdults={countOfResidents.countAdults}
-                    countChildren={countOfResidents.countChildren}
+                    countAdults={searchCountAdultsReservation}
+                    countChildren={searchCountChildrenReservation}
                     allBookings={bookings}
                     allApartments={allApartments}
                     currentApartment={apartment}
                     currentHotel={hotel}
-                    hotelNumber={hotel.type}
+                    hotelNumber={hotelNumber}
                 />
 
                 <WrapperInformationPrice
@@ -77,7 +68,7 @@ const ComponentCurrentReservation = ({
                 />
 
                 <WrapperCalendar
-                    hotelNumber={hotel.type}
+                    hotelNumber={hotelNumber}
                     allBookings={bookings}
                     allApartments={allApartments}
                     currentApartment={apartment}
@@ -85,7 +76,7 @@ const ComponentCurrentReservation = ({
                     changeDataFromCalendar={changeDataFromCalendar}
                 />
                 <WrapperAnaloguesApartment
-                    hotelType={hotel.type}
+                    hotelType={hotelNumber}
                     allApartments={allApartments}
                     currentApartment={apartment}
                 />
